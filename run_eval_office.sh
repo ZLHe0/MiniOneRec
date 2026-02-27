@@ -1,14 +1,17 @@
 #!/bin/bash
-# Evaluation script configured for 4 GPUs (3,4,5,6)
+# Evaluation script for Office_Products, configured for 4 GPUs (3,4,5,6)
 
-# Set this to the model you want to evaluate (SFT or RL checkpoint)
-EXP_NAME="./output/rl_qwen2.5-1.5b-instruct"
+EXP_NAME=$1
+if [ -z "$EXP_NAME" ]; then
+    echo "Usage: bash run_eval_office.sh <model_path>"
+    echo "  e.g. bash run_eval_office.sh ./output/sft_office_qwen2.5-1.5b-instruct"
+    exit 1
+fi
 
-for category in "Industrial_and_Scientific"; do
+for category in "Office_Products"; do
     exp_name_clean=$(basename "$EXP_NAME")
     echo "Processing category: $category with model: $exp_name_clean"
 
-    train_file=$(ls ./data/Amazon/train/${category}*.csv 2>/dev/null | head -1)
     test_file=$(ls ./data/Amazon/test/${category}*11.csv 2>/dev/null | head -1)
     info_file=$(ls ./data/Amazon/info/${category}*.txt 2>/dev/null | head -1)
 
@@ -36,10 +39,7 @@ for category in "Industrial_and_Scientific"; do
                 --result_json_data "$temp_dir/${i}.json" \
                 --batch_size 8 \
                 --num_beams 50 \
-                --max_new_tokens 256 \
-                --temperature 1.0 \
-                --guidance_scale 1.0 \
-                --length_penalty 0.0 &
+                --max_new_tokens 256 &
         fi
     done
     echo "Waiting for all evaluation processes..."
@@ -60,6 +60,10 @@ for category in "Industrial_and_Scientific"; do
     python ./calc.py \
         --path "$output_dir/final_result_${category}.json" \
         --item_path "$info_file"
+
+    echo "Per-level analysis..."
+    python ./calc_level.py \
+        --path "$output_dir/final_result_${category}.json"
 
     echo "Results saved to: $output_dir/final_result_${category}.json"
     echo "----------------------------------------"
