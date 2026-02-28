@@ -10,7 +10,8 @@
 #
 # Usage: bash run_rl_reward_ablation.sh
 
-set -e  # exit on error so a failure doesn't silently start the next run
+# Note: not using set -e because DeepSpeed cleanup can return non-zero exit
+# even after successful training, which would prevent the next phase from starting
 
 echo "============================================"
 echo "  Reward Ablation: Rule-Only RL Training"

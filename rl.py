@@ -13,6 +13,7 @@ from fire import Fire
 import pickle
 import math
 import json
+import re
 from sklearn.metrics import ndcg_score
 
 # os.environ['WANDB_MODE'] = 'disabled'
@@ -80,6 +81,15 @@ def train(
         # Extract semantic_id (first column) from the format: semantic_id \t item_title \t item_id
         item_name = [_.split('\t')[0].strip() for _ in info]
         item2id = {name: i for i, name in enumerate(item_name)}
+
+    # Parse semantic IDs into positional parts for position reward
+    def parse_sid(sid):
+        return re.findall(r'<[^>]+>', sid)
+
+    item2id_parts = {}
+    for name in item_name:
+        parts = parse_sid(name)
+        item2id_parts[name] = tuple(parts)
 
     sample = -1
     train_datasets = []
@@ -196,6 +206,32 @@ def train(
                 rewards.append(0.0)
         return rewards
 
+    def position_reward(prompts, completions):
+        """Reward = number of consecutive correct SID positions from left (0/1/2/3)."""
+        history = [prompt2history[prompt] for prompt in prompts]
+        targets = [history2target[elm] for elm in history]
+        rewards = []
+
+        for i, completion in enumerate(completions):
+            comp_sid = completion.strip(" \n\"")
+            target_sid = targets[i].strip(" \n\"")
+
+            if target_sid not in item2id_parts:
+                rewards.append(0.0)
+                continue
+
+            target_parts = item2id_parts[target_sid]
+            comp_parts = parse_sid(comp_sid)
+
+            score = 0.0
+            for j in range(min(len(comp_parts), len(target_parts))):
+                if comp_parts[j] == target_parts[j]:
+                    score += 1.0
+                else:
+                    break
+            rewards.append(score)
+        return rewards
+
     def semantic_reward(prompts, completions):
         history = [prompt2history[prompt] for prompt in prompts]
         targets = [history2target[elm] for elm in history]
@@ -256,7 +292,9 @@ def train(
         reward_fun = semantic_reward
     elif reward_type == "sasrec":
         reward_fun = cf_reward
-    
+    elif reward_type == "position":
+        reward_fun = position_reward
+
     os.environ['WANDB_PROJECT'] = wandb_project
     # os.environ["WANDB_MODE"] = "offline"
 
