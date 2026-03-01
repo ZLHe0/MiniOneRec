@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import os
+import re
 import textwrap
 import warnings
 from collections import defaultdict
@@ -227,6 +228,8 @@ class ReReTrainer(Trainer):
         #*loss
         dapo: bool = False,
         gspo: bool = False,
+        sibling_grpo: bool = False,
+        sibling_alpha: float = 0.5,
 
         #* others
         info_file: str = None,
@@ -388,6 +391,8 @@ class ReReTrainer(Trainer):
         self.dynamic_sampling = dynamic_sampling
         self.dapo = dapo
         self.gspo = gspo
+        self.sibling_grpo = sibling_grpo
+        self.sibling_alpha = sibling_alpha
         # self.logits_processor = logits_processor
 
         # Check if the per_device_train/eval_batch_size * num processes can be divided by the number of generations
@@ -970,6 +975,14 @@ class ReReTrainer(Trainer):
         advantages = (rewards - mean_grouped_rewards) / (std_grouped_rewards + 1e-4)
         # print(f"advantages: {advantages}")
 
+        # Sibling-GRPO: blend global advantages with sibling-level advantages
+        if self.sibling_grpo:
+            gathered_completions_text = gather_object(completions_text)
+            sibling_adv, sibling_group_count = self._compute_sibling_advantages(
+                gathered_completions_text, rewards, self.num_generations
+            )
+            advantages = self.sibling_alpha * advantages + (1 - self.sibling_alpha) * sibling_adv
+
         # Slice to keep only the local part of the data
         process_slice = slice(
             self.accelerator.process_index * len(prompts),
@@ -992,6 +1005,9 @@ class ReReTrainer(Trainer):
 
         self._metrics["reward"].append(rewards.mean().item())
         self._metrics["reward_std"].append(std_grouped_rewards.mean().item())
+        if self.sibling_grpo:
+            self._metrics["sibling_advantage_std"].append(sibling_adv.std().item())
+            self._metrics["sibling_group_count"].append(sibling_group_count)
         self._metrics["categorical_diversity"].append(cate_diversity)
         self._metrics["token_diversity"].append(token_diversity)
 
@@ -1029,6 +1045,88 @@ class ReReTrainer(Trainer):
             "sliced_rewards": sliced_rewards,
         }
     
+
+    def _compute_sibling_advantages(self, completions_text, rewards, num_generations):
+        """
+        Compute sibling-level advantages for Sibling-GRPO.
+
+        For each group of num_generations candidates sharing the same prompt, parse SID tokens
+        and compute advantages within sibling groups (candidates sharing the same parent prefix
+        at each SID depth level).
+
+        Returns:
+            sibling_advantages: tensor of shape (B*G,) with sibling-level advantages
+            avg_group_count: average number of sibling groups per prompt (for logging)
+        """
+        sibling_advantages = torch.zeros_like(rewards)
+        total_group_count = 0
+        num_prompts = 0
+
+        for group_start in range(0, len(completions_text), num_generations):
+            group_end = group_start + num_generations
+            group_completions = completions_text[group_start:group_end]
+            group_rewards = rewards[group_start:group_end]
+
+            # Parse SID tokens for each completion
+            parsed = [re.findall(r'<[^>]+>', c.strip()) for c in group_completions]
+
+            # Determine max depth across all completions in this group
+            depths = [len(p) for p in parsed]
+            max_depth = min(depths) if depths and min(depths) > 0 else 0
+
+            depth_advantages = []
+            prompt_group_count = 0
+
+            for depth in range(max_depth):
+                # Group by parent prefix (tokens 0..depth-1)
+                parent_groups = defaultdict(list)
+                for idx, tokens in enumerate(parsed):
+                    parent = tuple(tokens[:depth]) if depth > 0 else ()
+                    parent_groups[parent].append(idx)
+
+                level_adv = torch.zeros(num_generations, device=rewards.device)
+
+                for parent, indices in parent_groups.items():
+                    if len(indices) < 2:
+                        continue
+
+                    # Group siblings by their token at this depth
+                    child_groups = defaultdict(list)
+                    for idx in indices:
+                        child_token = parsed[idx][depth]
+                        child_groups[child_token].append(idx)
+
+                    if len(child_groups) < 2:
+                        continue
+
+                    prompt_group_count += len(child_groups)
+
+                    # Compute node-level score for each child token
+                    node_scores = {}
+                    for token, child_indices in child_groups.items():
+                        node_scores[token] = group_rewards[child_indices].mean()
+
+                    # Normalize within sibling set
+                    scores = torch.stack(list(node_scores.values()))
+                    mu = scores.mean()
+                    sigma = scores.std()
+
+                    for token, child_indices in child_groups.items():
+                        adv = (node_scores[token] - mu) / (sigma + 1e-4)
+                        for idx in child_indices:
+                            level_adv[idx] += adv
+
+                depth_advantages.append(level_adv)
+
+            if depth_advantages:
+                sibling_adv = torch.stack(depth_advantages).mean(dim=0)
+                sibling_advantages[group_start:group_end] = sibling_adv
+
+            total_group_count += prompt_group_count
+            num_prompts += 1
+
+        avg_group_count = total_group_count / max(num_prompts, 1)
+        return sibling_advantages, avg_group_count
 
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         if return_outputs:

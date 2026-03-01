@@ -1,0 +1,1636 @@
+%%
+%% This is file `sample-sigconf-authordraft.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,authordraft')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf-authordraft.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+\documentclass[sigconf]{acmart}
+% Algorithms (recommended: algorithm2e)
+
+% \acmSubmissionID{1570}
+% Algorithms
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+% Math
+\let\Bbbk\relax % avoid amssymb \Bbbk redefinition conflict with acmart
+\usepackage{amsmath,amssymb}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{adjustbox}
+\usepackage{arydshln}
+
+% Figures / Graphics
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+
+% Styling / Typography
+\usepackage{xcolor}
+\usepackage{microtype}
+
+% Symbols
+\usepackage{pifont}
+
+\usepackage[table]{xcolor} % 必须引入 xcolor 包
+\usepackage{geometry}
+%\geometry{a4paper, margin=1in}
+
+% \usepackage{ragged2e}
+% \justifying
+
+% \usepackage[final]{microtype}
+
+% \usepackage{titlesec} % ACM template forbids section redefinition
+
+\usepackage[absolute,overlay]{textpos}
+
+% \begin{document}
+
+
+
+% \section 标题前后间距：{left}{before}{after}
+% ACM 模板不允许重定义 section/subsection，以下命令已注释
+% \titlespacing*{\section}{0pt}{0.4\baselineskip}{0.2\baselineskip}
+% \titlespacing*{\subsection}{0pt}{0.5\baselineskip}{0.3\baselineskip}
+% \titlespacing*{\subsubsection}{0pt}{0.4\baselineskip}{0.2\baselineskip}
+
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+
+
+% \usepackage{microtype}          % 核心：优化断行/字符间距，解决80%溢出
+% \usepackage[english]{babel}     % 适配 ACM 模板的英文断行规则
+% \usepackage{hyphenat}           % 自定义专业术语断行（针对你的论文术语）
+% \usepackage{amsmath}            % ACM 推荐的公式环境，解决公式溢出
+% \usepackage{xurl}  
+
+% \usepackage{hyperref}
+% \usepackage{microtype}  % 核心：优化断行、字符间距，减少溢出
+% % 可选：针对英文断行的额外优化（双栏/窄栏推荐）
+% \usepackage[english]{babel}  % 适配英文断行规则
+%
+% 重定义 \paragraph 命令（ACM 模板不允许重定义，已禁用）
+% \renewcommand{\paragraph}[1]{%
+%   \par\noindent\textbf{#1}\quad % 加粗标题 + 标题后加空格（可调整）
+% }
+%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+% \setcopyright{acmlicensed}
+
+\acmDOI{} % 清空DOI（避免模板自动加载协议图标）
+% \setcopyright{none} 
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\settopmatter{printacmref=false}
+% \copyrightyear{2018}
+% \acmYear{2018}
+% \acmDOI{XXXXXXX.XXXXXXX}
+% %% These commands are for a PROCEEDINGS abstract or paper.
+% \acmConference[Conference acronym 'XX]{Make sure to enter the correct
+%   conference title from your rights confirmation email}{June 03--05,
+%   2018}{Woodstock, NY}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+% \acmISBN{978-1-4503-XXXX-X/2018/06}cg
+
+% 关闭首页的 "ACM Reference Format" 块
+% \settopmatter{printacmref=false}
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+% \acmSubmissionID{1570}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+\begin{textblock*}{\paperwidth}(1.5cm, 1.2cm)
+\includegraphics[height=1.5cm]{logo_v2.png} % 请确保目录下有 logo.png
+\end{textblock*}
+
+% \setlength{\abovedisplayskip}{2pt}
+% \setlength{\belowdisplayskip}{2pt}
+% \setlength{\abovedisplayshortskip}{2pt}
+% \setlength{\belowdisplayshortskip}{2pt}
+
+\setlength{\textfloatsep}{2pt}   % floats at top/bottom vs text
+\setlength{\intextsep}{2pt}      % floats in the middle of text
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Spend Search Where It Pays: Value-Guided Structured Sampling and Optimization for Generative Recommendation}
+%{Spend Compute Where It Matters: Value-Guided Efficient Decoding for Generative Recommendation}
+%Value-Guided Budgeted Tree Search  for Generative Recommendation
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+%%%%%%%%%%%%%%%%%%%%%
+% \author{Anonymous}
+% \authornote{Anonymous.}
+% \email{Anonymous@Anonymous.com}
+% \orcid{Anonymous}
+% \affiliation{%
+%   \institution{Anonymous}
+%   \city{Anonymous}
+%   \state{Anonymous}
+%   \country{Anonymous}
+% }
+
+\author{Jie Jiang$^{*}$, Yangru Huang$^{*}$, Zeyu Wang, Changping Wang, Yuling Xiong, Jun Zhang$^{\dagger}$, Huan Yu}
+\affiliation{
+  \institution{Tencent Inc., China}
+%   \city{Shenzhen}
+  \country{}}
+\email{{zeus, yarayrhuang, peterzywang, terracewang, whitnyxiong, neoxzhang,huanyu}@tencent.com}
+
+% \author{Anonymous}
+% \affiliation{%
+%   \institution{Anonymous}
+%   \city{Anonymous}
+%   \country{Iceland}}
+% \email{Anonymous@Anonymous.org}
+% \author{Ben Trovato}
+% \authornote{Both authors contributed equally to this research.}
+% \email{trovato@corporation.com}
+% \orcid{1234-5678-9012}
+% \author{G.K.M. Tobin}
+% \authornotemark[1]
+% \email{webmaster@marysville-ohio.com}
+% \affiliation{%
+%   \institution{Institute for Clarity in Documentation}
+%   \city{Dublin}
+%   \state{Ohio}
+%   \country{USA}
+% }
+
+% \author{Lars Th{\o}rv{\"a}ld}
+% \affiliation{%
+%   \institution{The Th{\o}rv{\"a}ld Group}
+%   \city{Hekla}
+%   \country{Iceland}}
+% \email{larst@affiliation.org}
+
+% \author{Valerie B\'eranger}
+% \affiliation{%
+%   \institution{Inria Paris-Rocquencourt}
+%   \city{Rocquencourt}
+%   \country{France}
+% }
+
+% \author{Aparna Patel}
+% \affiliation{%
+%  \institution{Rajiv Gandhi University}
+%  \city{Doimukh}
+%  \state{Arunachal Pradesh}
+%  \country{India}}
+
+% \author{Huifen Chan}
+% \affiliation{%
+%   \institution{Tsinghua University}
+%   \city{Haidian Qu}
+%   \state{Beijing Shi}
+%   \country{China}}
+
+% \author{Charles Palmer}
+% \affiliation{%
+%   \institution{Palmer Research Laboratories}
+%   \city{San Antonio}
+%   \state{Texas}
+%   \country{USA}}
+% \email{cpalmer@prl.com}
+
+% \author{John Smith}
+% \affiliation{%
+%   \institution{The Th{\o}rv{\"a}ld Group}
+%   \city{Hekla}
+%   \country{Iceland}}
+% \email{jsmith@affiliation.org}
+
+% \author{Julius P. Kumquat}
+% \affiliation{%
+%   \institution{The Kumquat Consortium}
+%   \city{New York}
+%   \country{USA}}
+% \email{jpkumquat@consortium.net}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Trovato et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+
+
+% Generative recommendation with autoregressive large language models (LLMs) is becoming increasingly attractive because it unifies retrieval and ranking within a single conditional generation framework. However, reinforcement learning (RL) fine-tuning of these LLMs with self-generated samples faces a fundamental probability-reward mismatch: although the objective is to maximize downstream reward, standard decoding and sampling procedures such as beam search remain dominated by token-level likelihood and therefore over-exploit locally probable prefixes. This results in \textit{insufficient exploration}, where low-probability prefixes that later yield high reward are pruned early and rarely sampled, and \textit{advantage compression}, where samples with common high-probability prefix yield strongly correlated rewards and low within-group variance, weakening RL's comparative signal. To address these issues, this work propose a self-evolving sampling-and-learning framework comprising two coupled components: Value-Guided Efficient Sampling (VED) and Sibling-GRPO. VED identifies decisive nodes and selectively deepens high-potential prefixes, significantly improving efficient exploration without the overhead of exhaustive tree search. Complementarily, Sibling-GRPO leverages the tree structure of the sampled candidates to compute sibling-relative advantages, concentrating learning signals on the decisive branching actions. Extensive experiments demonstrate that our framework significantly outperforms state-of-the-art generative baselines, achieving superior long-tail accuracy and diversity under strict latency constraints.
+% with autoregressive sequence models 
+%Generative recommendation via autoregressive models has gained significant traction by unifying retrieval and ranking into a single conditional generation framework. However, fine-tuning these models with Reinforcement Learning (RL) using self-sampled trajectories often encounters a fundamental probability-reward mismatch. Standard decoding strategies such as beam search are likelihood-dominated and thus favor locally probable prefixes. This results in \textit{insufficient exploration}, where low-probability prefixes that later yield high reward are pruned early and rarely sampled, and \textit{advantage compression}, where samples with common high-probability prefix yield strongly correlated rewards and low within-group variance, weakening RL's comparative signal. 
+%To address these challenges, we propose V-STAR, a {V}alue-guided {S}ampling and {T}ree-structured {A}dvantage {R}einforcement framework for generative recommendation. V-STAR establishes a self-evolving loop between exploration and credit assignment through two synergetic components: Value-Guided Efficient Decoding (VED) and Sibling-GRPO. Specifically, VED identifies decisive nodes to selectively deepen high-potential prefixes, significantly enhancing exploration efficiency without the cost of exhaustive tree search. Complementarily, Sibling-GRPO exploits the resulting tree topology to compute sibling-relative advantages, concentrating learning signals on the decisive branching actions where the policy's choice most impacts the final reward.  Extensive experiments demonstrate that our framework significantly outperforms state-of-the-art baselines, achieving superior accuracy and candidate-set diversity under strict latency constraints.
+
+
+
+Generative recommendation via autoregressive models has unified retrieval and ranking into a single conditional generation framework. However, fine-tuning these models with Reinforcement Learning (RL) often suffers from a fundamental \textbf{probability-reward mismatch}. Conventional likelihood-dominated decoding (e.g., beam search) exhibits a myopic bias toward locally probable prefixes, which causes two critical failures: (1) \textit{insufficient exploration}, where high-reward items in low-probability branches are prematurely pruned and rarely sampled, and (2) \textit{advantage compression}, where trajectories sharing high-probability prefixes receive highly correlated rewards with low within-group variance, yielding a weak comparative signal for RL.
+To address these challenges, we propose \textbf{V-STAR}, a \textbf{V}alue-guided \textbf{S}ampling and \textbf{T}ree-structured \textbf{A}dvantage \textbf{R}einforcement framework. V-STAR forms a self-evolving loop via two {synergistic} components. First, a \textbf{Value-Guided Efficient Decoding (VED)} is developed to identify decisive nodes and selectively deepen high-potential prefixes. This improves exploration efficiency without exhaustive tree search. Second, we propose \textbf{Sibling-GRPO}, which exploits the induced tree topology to compute sibling-relative advantages and concentrates learning signals on decisive branching decisions. Extensive experiments on both offline and online datasets demonstrate that V-STAR outperforms state-of-the-art baselines, delivering superior accuracy and candidate-set diversity under strict latency constraints.
+
+
+% Generative recommendation with autoregressive large language models (LLMs) is becoming increasingly attractive because it unifies retrieval and ranking within a single conditional generation framework. However, reinforcement learning (RL) fine-tuning of these LLMs with self-generated samples faces a fundamental probability-reward mismatch: although the objective is to maximize downstream reward, standard decoding and sampling procedures such as beam search remain dominated by token-level likelihood and therefore over-exploit locally probable prefixes. This results in \textit{insufficient exploration}, where low-probability prefixes that later yield high reward are pruned early and rarely sampled, and \textit{advantage compression}, where samples with common high-probability prefix yield strongly correlated rewards and low within-group variance, weakening RL's comparative signal. 
+% To address these challenges, we propose V-STAR, a Value-guided Sampling and Tree-structured Advantage Reinforcement framework. V-STAR establishes a self-evolving loop between exploration and credit assignment through two synergetic components: Value-Guided Efficient Decoding (VED) and Sibling-GRPO. Specifically, VED identifies decisive nodes to selectively deepen high-potential prefixes, significantly enhancing exploration efficiency without the cost of exhaustive tree search. Complementarily, Sibling-GRPO exploits the resulting tree topology to compute sibling-relative advantages, concentrating learning signals on the decisive branching actions where the policy's choice most impacts the final reward.  Extensive experiments demonstrate that our framework significantly outperforms state-of-the-art generative baselines, achieving superior long-tail accuracy and diversity under strict latency constraints.
+
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+% \begin{CCSXML}
+% <ccs2012>
+%  <concept>
+%   <concept_id>00000000.0000000.0000000</concept_id>
+%   <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
+%   <concept_significance>500</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>00000000.00000000.00000000</concept_id>
+%   <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
+%   <concept_significance>300</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>00000000.00000000.00000000</concept_id>
+%   <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
+%   <concept_significance>100</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>00000000.00000000.00000000</concept_id>
+%   <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
+%   <concept_significance>100</concept_significance>
+%  </concept>
+% </ccs2012>
+% \end{CCSXML}
+
+% \ccsdesc[500]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+% \ccsdesc[300]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+% \ccsdesc{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+% \ccsdesc[100]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Generative Recommendation, Reinforcement Learning, Value-
+Guided Efficient Decoding, Sibling-GRPO}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+% \begin{teaserfigure}
+%   \includegraphics[width=\textwidth]{sampleteaser}
+%   \caption{Seattle Mariners at Spring Training, 2010.}
+%   \Description{Enjoying the baseball game from the third-base
+%   seats. Ichiro Suzuki preparing to bat.}
+%   \label{fig:teaser}
+% \end{teaserfigure}
+
+
+% \received{20 February 2007}
+% \received[revised]{12 March 2009}
+% \received[accepted]{5 June 2009}
+
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% \footnotetext[2]{Corresponding author (neoxzhang@tencent.com).}
+% \renewcommand{\thefootnote}{\arabic{footnote}}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Equal contribution: Jie Jiang and Yangru Huang.}
+\footnotetext[2]{Corresponding author: Jun Zhang.}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+
+\section{Introduction}
+Recommender systems are shifting from retrieve-and-rank to end-to-end {generative recommendation (GR)}~\cite{rajput2023recommender, zhai2024actions, li2023gpt4rec}, which has been deployed in e-commerce and short-video platforms~\cite{rajput2023recommender, zhai2024actions}. By reformulating item identifiers into a hierarchical search space of Semantic IDs (SIDs), large-scale candidate generation has become computationally practical with autoregressive language models~\cite{deng2025onerec, wei2025oneloc, yang2025sparse, wang2024eager}. To further bridge the gap between generation likelihood and real-world utility, these GR models are usually fine-tuned with {reinforcement learning (RL)}~\cite{chen2024softmax, chen2025onesearch, sharma2024optimizing} techniques, e.g., on-policy GRPO-style groupwise updates~\cite{deng2025onerec, zhou2025onerec, xing2025reg4rec, hong2025generative, kong2025minionerec}. However, such a training mechanism is bottlenecked by a fundamental probability-reward misalignment. During training, candidate items are typically sampled by probability-driven decoding strategies (e.g., beam search). In contrast, the recommendation objective aims to maximize the expected reward of the full generated SIDs.
+
+% Recommender systems have witnessed a fundamental shift from the conventional retrieve-and-rank pipeline to {generative recommendation (GR)} via autoregressive modeling~\cite{rajput2023recommender, zhai2024actions, li2023gpt4rec, SASRec, sun2019bert4rec}. GR reformulates recommendation as conditional sequence generation from user context, enabling end-to-end modeling of user preferences and favorable scalability in high-value domains such as e-commerce and short-video platforms~\cite{rajput2023recommender, zhai2024actions}. A key recent advance is the adoption of {Semantic IDs (SIDs)}~\cite{deng2025onerec, wei2025oneloc, yang2025sparse, wang2024eager}, which represent each item as a short sequence of discrete tokens. This representation makes large-scale candidate generation feasible under an autoregressive policy and has been widely used in modern GR systems. To directly optimize downstream metrics (e.g., clicks, conversions, watch time), SID-based GR models are usually fine-tuned with {reinforcement learning (RL)}~\cite{chen2024softmax, chen2025onesearch, sharma2024optimizing}, often via on-policy GRPO-style groupwise updates~\cite{liu2024deepseek, deng2025onerec, zhou2025onerec, xing2025reg4rec, hong2025generative, kong2025minionerec}. However, such a training mechanism is bottlenecked by a fundamental probability-reward misalignment. During training, candidate items are typically sampled by probability-driven decoding strategies (e.g., beam search), which prioritize high-likelihood prefixes under the model. In contrast, the recommendation objective aims to maximize the expected reward of the full generated SIDs.
+
+
+
+% Modern recommender systems are undergoing a fundamental paradigm shift from conventional discriminative retrieve-and-rank pipelines to {generative recommendation (GR)} via autoregressive modeling~\cite{rajput2023recommender, zhai2024actions, li2023gpt4rec, SASRec, sun2019bert4rec}. Inspired by the success of Large Language Models (LLMs), recent works utilize compositional sequences of discrete tokens as Semantic IDs (SIDs) to represent items, reframing recommendation as a conditional sequence generation task~\cite{deng2025onerec, wei2025oneloc, yang2025sparse, rajput2023recommender, wang2024eager}. This unification allows systems to inherit the advanced representational capabilities of pre-trained transformers, showing immense potential in high-value domains such as e-commerce and short-video platforms.
+% To directly optimize downstream metrics (e.g., clicks, conversions, watch time), GR models are usually fine-tuned with {reinforcement learning (RL)}~\cite{chen2024softmax, chen2025onesearch, sharma2024optimizing}. In particular, the model self-samples a group of candidates given the input context, and GRPO-style~\cite{liu2024deepseek} groupwise updates optimize the policy using within-group relative advantages~\cite{deng2025onerec, zhou2025onerec, xing2025reg4rec, hong2025generative, kong2025minionerec}. However, such a training mechanism is bottlenecked by a fundamental probability-reward misalignment. During training, candidate items are typically sampled by probability-driven generation strategies (e.g., beam search), which prioritize high-likelihood prefixes under the model. In contrast, the recommendation objective aims to maximize the expected cumulative reward of the full generated sequence.
+
+%To directly optimize downstream metrics (e.g., clicks, conversions), GR models are usually fine-tuned with reinforcement learning (RL)~\cite{chen2024softmax, chen2025onesearch, sharma2024optimizing}. Recent works~\cite{deng2025onerec, zhou2025onerec, xing2025reg4rec, hong2025generative, kong2025minionerec} adopt Group Relative Policy Optimization (GRPO)~\cite{liu2024deepseek}, an on-policy paradigm where the model self-samples a group of candidates and optimizes the policy using within-group relative advantages. However, such a training mechanism is bottlenecked by a fundamental probability-reward misalignment. During training, candidate items are typically sampled by probability-driven generation strategies (e.g., beam search), which prioritize high-likelihood prefixes under the model. In contrast, the recommendation objective aims to maximize the expected cumulative reward of the full generated sequence.
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{figure/introduction.png}
+    \caption{Comparison of Beams Search and V-STAR.  Left: probability-based pruning removes high-reward items and produces homogeneous candidates. Right: V-STAR expands high-value prefixes under a fixed budget and strengthens within-group learning with Sibling-GRPO.}
+    \label{fig:introduction}
+    \vspace{-0.1em}
+\end{figure}
+
+
+This misalignment creates a tension between the greedy nature of generation and the long-term goal of exploration, manifesting in two critical structural failures: (1) \textbf{insufficient exploration of high-reward items:} Many high-reward items begin with lower-probability tokens because they have limited historical interactions. Standard beam search prunes branches based on likelihood and can irreversibly discard such paths early in generation. Consequently, the model becomes blind to high-reward candidates simply because their prefixes are not immediately likely. (2) \textbf{advantage compression within the generated group:} Guided by likelihood, decoding tends to over-expand multiple branches that share high-probability prefixes, producing a candidate set dominated by siblings, i.e., near-duplicate items with similar rewards. However, effective RL relies on reward contrast: policy gradients are driven by differences between good and bad actions. In such sibling-heavy groups, rewards become highly correlated and concentrate in a narrow band, while a few outliers can set the overall reward scale. As a result, GRPO's group-wise normalization is dominated by the global reward range and shrinks the relative advantage differences among siblings, weakening the learning signal at the decisions that actually matter.
+
+
+
+
+
+Previous methods attempt to mitigate these issues, but each incurs a hard trade-off. One line of work increases the sampling budget~\cite{goyal2018continuous, wiseman2016sequence, yang2026bear}, yet indiscriminate expansion largely spends compute on redundant, high-probability candidates. Another line relies on heuristic sampling (e.g., temperature scaling or nucleus sampling) to increase sample diversity~\cite{holtzman2019curious, ouyang2022training, touvron2023llama}, but the added randomness is difficult to control, often hurting relevance and making high-reward outcomes less reliable. More structured approaches, such as Monte Carlo Tree Search or tree-of-thought style search~\cite{silver2017mastering, yao2023tree, li2022competition}, can improve exploration in LLM inference, but their computational cost is prohibitive for broad use in recommendation. A critical gap therefore remains: we lack a mechanism that reliably determines \emph{when} exploration is worth paying for and \emph{where} limited compute should be allocated to maximize reward.
+
+% This paper is built on a simple insight: in semantic-identifier generation, the marginal value of extra exploration is sparse. Most generation steps make uniform exploration, and spending additional compute yields little benefit. Instead, reward gains concentrate at a small number of decisive prefix nodes that determine whether the decoder stays in high-probability regions or discovers low-prior yet high-reward branches. These decisive nodes can be characterized by two complementary signals: uncertainty, indicating that plausible continuations exhibit substantial ambiguity, and upside potential, indicating that deeper exploration may lead to a meaningful reward jump. This view aligns with budgeted decision-making in sequential problems: compute should be allocated adaptively to low-probability but high-impact states rather than uniformly expanding the entire tree.
+%This paper is built on a simple insight: in semantic-identifier generation, the marginal value of extra exploration is sparse. Most generation steps make uniform exploration, and spending additional compute yields little benefit. Instead, reward gains concentrate at a small number of decisive prefix nodes that determine whether the decoder stays in high-probability regions or discovers low-prior yet high-reward branches. These decisive nodes can be characterized by two complementary signals: (1) \textbf{high value}, indicating substantial expected gain from continuing generation, and (2) \textbf{high ambiguity} {given such return}, indicating that even among high-return prefixes the next-step continuation remains contested and extra search can meaningfully change the outcome. This view aligns with budgeted decision-making in sequential problems: compute should be allocated adaptively to low-probability but high-impact states rather than uniformly expanding the entire tree.
+
+Motivated by this gap, we make a simple observation: under a fixed decoding budget, extra exploration does \emph{not} help equally at every generation step. Many prefixes are clearly low-potential, or their next token is already obvious, so additional compute there is largely wasted. In contrast, exploration matters most at a small number of \emph{decisive} prefixes where several plausible branches compete and which branch to choose strongly affects the final reward (e.g., whether long-tail but high-reward items can be reached). We detect these decisive points using two signals: (1) \textbf{high value}, meaning the prefix is promising in expected reward, and (2) \textbf{high ambiguity given high value}, meaning the next-step choice is uncertain enough that extra search can change the outcome. This perspective turns exploration into a targeted budgeting problem: decide \emph{where} to spend compute so that it most improves reward, which directly motivates a value-guided decoding strategy and a tree-structured credit assignment objective.
+
+
+Building on these insights, we propose \textbf{V-STAR} (\underline{V}alue-guided \underline{S}ampling and \underline{T}ree-structured \underline{A}dvantage \underline{R}einforcement), a self-evolving sampling-and-learning framework where better sampling provides clearer training signals, and the resulting updates further improve sampling. V-STAR comprises two key components: \textbf{Value-Guided Efficient Decoding (VED)} for candidate sampling and \textbf{Sibling-GRPO} for tree-structured policy optimization. \textbf{VED} tackles \textit{insufficient exploration} by performing {budgeted} value-guided expansion on the SID prefix tree. It initializes a shallow prefix tree with likelihood-guided beam search to cheaply reveal where hypotheses concentrate and where promising branches are pruned early. It then combines a lightweight value estimator with an uncertainty signal (e.g., policy entropy) to select a small set of high-potential prefixes and spends additional compute only at these divergence points, enabling local expansion and backup under strict depth and branching constraints. This targeted allocation corrects premature pruning and improves the reachability of long-tail, high-reward items without incurring exhaustive tree search. 
+\textbf{Sibling-GRPO} addresses \textit{advantage compression} in prefix-coupled generation by introducing a structured group-relative objective over genealogically related candidates. Rather than applying a single global normalization over the entire candidate set, it forms sibling groups under each parent prefix and performs within-group relative advantage learning. This concentrates gradients on the decisive branching actions where candidates diverge yet remain highly correlated, mitigating advantage compression and recovering informative learning signals inside homogenized candidate clusters. Together, VED improves candidate quality and diversity, while Sibling-GRPO turns these gains into more stable and informative updates. 
+
+In summary, our contributions are as follows: \begin{enumerate} \item We formalize probability--reward misalignment in generative recommendation and analyze its impact on sample decoding and RL fine-tuning. Building on this analysis, we propose V-STAR to address the issue via value-guided decoding and tree-structured credit assignment. \item We develop Value-Guided Efficient Decoding (VED) for budgeted candidate construction by allocating decoding compute to high-value and high-ambiguity nodes. \item We introduce Sibling-GRPO, a tree-structured objective that uses sibling groups to mitigate advantage compression under correlated candidates. \item Experiments on both offline datasets and online settings show consistent gains over strong generative baselines. \end{enumerate}
+
+
+% Motivated by these failures, we propose \textbf{V-STAR} (\underline{V}alue-guided \underline{S}ampling and \underline{T}ree-structured \underline{A}dvantage \underline{R}einforcement). It is a self-evolving sampling-and-learning framework that comprises two key components: \textbf{Value-Guided Efficient Decoding (VED)} for candidate sampling and \textbf{Sibling-GRPO} for tree-structured policy optimization.
+% First, to resolve the \textit{insufficient exploration}, we propose Value-Guided Efficient Decoding (VED). The key is to first build a usable prefix candidate tree at low cost, and then selectively expand only the most promising divergence points under a strict compute budget. Concretely, we initialize a shallow prefix tree by running standard probability-guided beam search, which provides a low-cost structural scan of the search space and exposes where hypotheses concentrate and where branches get suppressed early. On top of this initialized tree, we introduce a lightweight value estimator to prioritize nodes and allocate additional budget only to a small set of prefixes that are both high-potential and highly uncertain, performing budgeted local expansion and backpropagation within constrained depth and branching factor. In this way, the framework corrects premature pruning and improves reachability and coverage of long-tail high-reward items without incurring the cost of exhaustive tree search. 
+% Second, to address the \textit{Advantage compression} inherent in prefix-coupled generation, we further introduce Sibling-GRPO, a group-relative policy optimization objective tailored to genealogically related candidates. Instead of comparing samples globally in an unstructured manner, Sibling-GRPO treats candidates spawned from the same parent prefix as a structured sibling group and performs within-group relative advantage learning. This design concentrates gradients on the decisive branching actions—precisely where candidates diverge yet remain highly correlated—thereby mitigating advantage compression and recovering informative learning signals even inside homogenized candidate clusters. Together, VED adopts selective expansion to improve the quality and discriminability of candidate groups, and Sibling-GRPO converts these improvements into stronger and more stable updates, forming a self-evolving sampling-and-learning loop that progressively enhances both sampling and training.
+
+
+
+
+% [1]: https://par.nsf.gov/servlets/purl/10522765?utm_source=chatgpt.com "IDGenRec: LLM-RecSys Alignment with Textual ID Learning"
+% [2]: https://arxiv.org/html/2506.11902v1?utm_source=chatgpt.com "TreeRL: LLM Reinforcement Learning with On-Policy Tree ..."
+% [3]: https://papers.neurips.cc/paper_files/paper/2023/file/20dcab0f14046a5c6b02b61da9f13229-Paper-Conference.pdf?utm_source=chatgpt.com "Recommender Systems with Generative Retrieval"
+% [4]: https://arxiv.org/abs/1610.02424?utm_source=chatgpt.com "Diverse Beam Search: Decoding Diverse Solutions from Neural Sequence Models"
+\section{Related Work}
+
+\subsection{Generative Recommender}
+The paradigm of recommender systems is shifting from discriminative matching to generative modeling. Early works linearized user histories and predicted the next item ID directly, but faced challenges due to the extremely large item-ID vocabulary~\cite{covington2016deep, sun2019bert4rec}. To mitigate this issue, recent approaches such as P5~\cite{geng2022recommendation} and TIGER~\cite{rajput2023recommender} introduce SID, which represent each item as a short sequence of hierarchical discrete tokens constructed via residual quantization (RQ-VAE)~\cite{zeghidour2021soundstream} or collaborative indexing. This formulation bridges recommendation and language modeling, enabling Transformer architectures to generate items token by token.
+Most existing SID-based recommenders still rely on likelihood-driven decoding (e.g., beam search) at training time. Recent analyses~\cite{li2023generative} show that beam search exhibits a rich-get-richer bias and can prune low-probability branches early in generation. In recommendation, high-reward items (e.g., niche discoveries) may begin with low-probability prefix tokens, so early prefix pruning can make a substantial portion of the item space effectively unreachable. This is a structural limitation that is not resolved by model scaling alone.
+
+
+% \subsection{Generative Recommender Systems}
+% Recommender systems are increasingly shifting from discriminative matching pipelines to generative sequence modeling.
+% Early sequence-based recommenders model user behavior as an item-ID sequence and learn to predict future items over a large vocabulary, which poses challenges for both modeling and inference at scale~\cite{covington2016deep,sun2019bert4rec}.
+% To mitigate the item-vocabulary bottleneck, recent generative recommenders represent each item using structured discrete tokens, often referred to as Semantic IDs, constructed via hierarchical quantization (e.g., RQ-VAE)~\cite{zeghidour2021soundstream} or collaborative indexing, enabling token-by-token generation with Transformer architectures~\cite{geng2022recommendation,rajput2023recommender}.
+% In practice, these methods typically rely on likelihood-dominated decoding such as beam search to generate candidate items under strict latency budgets.
+% Recent analyses~\cite{li2023generative} show that beam search exhibits a rich-get-richer behavior, aggressively pruning low-probability branches early in the generation process.
+% For recommendation, high-utility items (e.g., niche discoveries) can correspond to low-probability early tokens, so early prefix pruning may prevent these items from being sampled and thus limit the effective coverage of the item space during both inference and self-generated training.
+
+\vspace{-1em}
+\subsection{Decoding Strategies in Generation}
+Decoding (sampling) strategies control the trade-off between exploration and exploitation. Heuristic sampling methods (e.g., Top-K and nucleus sampling~\cite{holtzman2019curious}) introduce stochasticity to improve diversity, but they provide no explicit mechanism to guarantee reward and can lead to irrelevant recommendations. In contrast, tree-search algorithms such as Monte Carlo Tree Search (MCTS) and Tree of Thoughts (ToT)~\cite{yao2023tree} enable lookahead and backtracking and have shown strong performance on multi-step reasoning tasks. However, these methods are often impractical for industrial recommendation because strict latency budgets make per-request rollouts prohibitively expensive.
+Some works distill search behavior into a policy~\cite{wang2023learning}, but they typically treat search as a black-box optimizer. Our work instead proposes a budget-aware sparse search that dynamically allocates a finite compute budget to a small set of pivotal nodes, capturing the benefits of lookahead without the overhead of full tree expansion.
+
+\subsection{RL for Generative Alignment}
+RL is widely used to align generative models with non-differentiable objectives (e.g., CTR and diversity). Common approaches include REINFORCE~\cite{williams1992simple}, PPO~\cite{schulman2017proximal}, GRPO~\cite{shao2024deepseekmath}, and recent direct preference-optimization methods such as DPO~\cite{rafailov2024direct}. In recommendation, RL has been applied to optimize slate generation (e.g., SlateQ~\cite{ie2019reinforcement}) and to correct exposure bias~\cite{chen2019top}. 
+However, existing generative RL methods often implicitly treat candidate samples as independent and identically distributed (i.i.d.)~\cite{deng2025onerec, wei2025oneloc}. In autoregressive generation, candidates frequently share long prefixes and therefore form sibling groups with highly correlated features and rewards. Standard policy-gradient updates can be ineffective in this setting: subtracting a baseline from a set of nearly identical rewards yields a weak and noisy advantage signal, which can lead to advantage collapse~\cite{ramesh2023policy}. Our proposed Sibling-GRPO addresses this issue by explicitly modeling relative advantages within sibling groups, which is related in spirit to listwise ranking objectives~\cite{cao2007learning} but tailored to the hierarchical structure of the generation tree.
+
+
+% =========================
+% Preliminary (LaTeX Version)
+% =========================
+
+\section{Preliminaries}
+\label{sec:prelim}
+\subsection{Problem Formulation}
+\noindent\textbf{Generative Recommendation with Semantic IDs.}\;
+We formulate recommendation as a conditional sequence generation task~\cite{sutskever2014sequence, geng2022recommendation}. Under the SID paradigm~\cite{rajput2023recommender}, each item is represented by a unique, fixed-length sequence of discrete tokens
+$y=(y_1,\ldots,y_L)\in\mathcal{V}^L$,
+where $\mathcal{V}$ is a finite token vocabulary and $L$ is the (fixed) SID length. Given a user context $x$ (e.g., interaction history and profile features), an autoregressive policy $\pi_\theta$ models the conditional probability of an item sequence via the probability chain rule:
+$
+\pi_\theta(y \mid x)
+=
+\prod_{l=1}^{L}\pi_\theta\!\left(y_{l} \mid x, y_{\leq l-1}\right),
+\label{eq:policy_factorization}
+$
+where $y_{\leq l-1}=(y_1,\ldots,y_{l-1})$ denotes the already generated prefix before step $l$, with $y_{\leq 0}=\varnothing$ (empty prefix, i.e., generation starts from the user context $x$ alone).
+
+\noindent\textbf{Decoding Operator.}\;
+We abstract decoding process as an operator $\mathcal{D}$ that maps policy $\pi_\theta$ and context $x$ to a candidate set $\mathcal{C}(x)$:
+\begin{equation}
+\mathcal{C}(x)=\mathcal{D}(\pi_\theta,x),\qquad \mathcal{C}(x)\subset \mathcal{V}^L.
+\label{eq:decoding_operator}
+\end{equation}
+Ideally, $\mathcal{D}$ should return candidates that maximize the ground-truth reward $R(x,y)$. In practice, standard decoding strategies (e.g., beam search~\cite{yang2026bear}) approximate this objective by maximizing model probability $\pi_\theta(y\mid x)$ through heuristic prefix pruning.
+
+\noindent\textbf{Policy Refinement via GRPO.}\;
+To align the pre-trained policy with non-differentiable ranking objectives, we apply GRPO~\cite{shao2024deepseekmath} to the decoded set $\mathcal{C}(x)$ as the empirical reference set for reward comparison. The standard group-normalized advantage is used:
+\begin{equation}
+A(x,y)
+=
+\frac{R(x,y)-\mu_R(x)}{\sigma_R(x)+\epsilon},
+\label{eq:advantage}
+\end{equation}
+where $\mu_R(x)$ and $\sigma_R(x)$ are the mean and standard deviation of rewards over $\mathcal{C}(x)$ and $\epsilon>0$ ensures numerical stability. In addition to standard GRPO, our method also applies sibling GRPO to further enhance learning signals, which will be introduced in Sec.~\ref{sec:sibling_grpo}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Probability-Driven Decoding Bias}
+\label{sec:prob_driven_decoding_bias}
+% \paragraph{Early pruning and irreversible pruning.}
+% Consider the SID prefix tree induced by $\mathcal{V}^L$. For any prefix $y_{1:\ell}=(y_1,\ldots,y_\ell)$, we define an optimistic upper bound on the log-probability of its best possible completion:
+% \begin{equation}
+% U_\ell\!\left(y_{1:\ell}\right)
+% \triangleq
+% \log \pi_\theta\!\left(y_{1:\ell}\mid x\right)
+% +
+% \sum_{k=\ell+1}^{L}\ \max_{v\in\mathcal{V}} \log \pi_\theta\!\left(v \mid x, y_{<k}\right),
+% \label{eq:optimistic_bound}
+% \end{equation}
+% where $y_{<k}=(y_1,\ldots,y_{k-1})$ denotes the prefix at step $k$.
+% Intuitively, $U_\ell(\cdot)$ assumes that after committing to $y_{1:\ell}$, the decoder always picks the single best next token (in conditional log-probability) at each remaining step.
+% Then, for any completion $y\in\mathcal{V}^L$ that extends $y_{1:\ell}$, it holds that
+% \begin{equation}
+% \log \pi_\theta(y\mid x)\ \le\ U_\ell\!\left(y_{1:\ell}\right).
+% \label{eq:bound_completion}
+% \end{equation}
+% This highlights a limitation of probability-only pruning: a prefix can have low current probability yet still admit a strong completion, but truncated decoders typically retain or discard prefixes solely based on the current prefix score $\log \pi_\theta(y_{1:\ell}\mid x)$, without accounting for the remaining potential term in~\eqref{eq:optimistic_bound}.
+% Consequently, such prefixes may be pruned prematurely, inducing early pruning and restricting effective exploration of the SID tree.
+
+
+
+
+
+
+% \paragraph{Early pruning and irreversible loss of high-return branches.}
+% Consider the SID prefix tree induced by $\mathcal{V}^L$. Truncated decoding methods (e.g., beam or top-$k$) maintain only a small frontier of prefixes and discard the rest based on \emph{local} likelihood. Once a prefix is pruned, \emph{all} items reachable from that branch are never evaluated again, making the loss irreversible under a fixed sampling budget.
+
+% This is particularly problematic in recommendation because the optimization target is downstream return rather than likelihood. A prefix may have low model probability while still leading to items with high long-term return (e.g., niche or long-tail items). Formally, for any prefix $y_{1:\ell}=(y_1,\ldots,y_\ell)$, define the best achievable return among its valid completions as
+% \begin{equation}
+% R^{\max}_\ell\!\left(y_{1:\ell}\right)
+% \triangleq
+% \max_{y\in\mathcal{V}^L:\, y_{1:\ell}\prec y}\ R(x,y),
+% \label{eq:best_return_completion}
+% \end{equation}
+% where $y_{1:\ell}\prec y$ denotes that $y$ extends the prefix $y_{1:\ell}$. Likelihood-only pruning ranks prefixes by $\log \pi_\theta(y_{1:\ell}\mid x)$ and is blind to $R^{\max}_\ell(y_{1:\ell})$. Consequently, prefixes with low current probability but high achievable return can be removed early, after which the corresponding high-return items are never sampled. This motivates value-guided budget allocation: exploration should be selectively invested in prefixes with high predicted return, even when they are not locally likely.
+
+
+
+\noindent\textbf{Insufficient exploration on high-reward items.}\;
+Autoregressive decoding process can be viewed as traversing a prefix tree~\cite{weng2025traversal}: SIDs sharing a common prefix follow the same branch until they diverge. Under a fixed budget, pruning-based methods~\cite{ouyang2022training, cobbe2021training, touvron2023llama} (e.g., beam search or top-K sampling) keep only a small set of active prefixes and discard the rest by local likelihood. Pruning is irreversible in this case: once a prefix is removed, all items under that branch will never be evaluated. This is problematic because likelihood and reward can be misaligned: there may exist $y_a,y_b$ with $\pi_\theta(y_a\mid x)>\pi_\theta(y_b\mid x)$ but $R(x,y_a)<R(x,y_b)$. As a result, likelihood-only pruning may eliminate low-probability prefixes that lead to high-reward items, and those branches are rarely revisited. %This motivates value-guided budget allocation, which invests compute in prefixes with high predicted return rather than pruning solely by likelihood.
+
+
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\linewidth]{figure/adv_colla.png}
+%     \caption{The phenomenon of Advantage Compression}
+%     \label{fig:adv_colla}
+%     \vspace{-0.8em}
+% \end{figure}
+
+\noindent\textbf{Advantage compression within the generated group.}\;
+Given a candidate set $\mathcal{C}(x)$, we define the within-group reward range as:
+\begin{equation}
+\Delta_R(x)
+\triangleq
+\max_{y\in \mathcal{C}(x)} R(x,y)
+-
+\min_{y\in \mathcal{C}(x)} R(x,y).
+\label{eq:reward_range}
+\end{equation}
+Since $|R(x,y)-\mu_R(x)|\le \Delta_R(x)$ for all $y\in\mathcal{C}(x)$, the within-group advantage magnitude is bounded by:
+\begin{equation}
+|A(x,y)|
+=
+\left|
+\frac{R(x,y)-\mu_R(x)}{\sigma_R(x)+\epsilon}
+\right|
+\le
+\frac{\Delta_R(x)}{\sigma_R(x)+\epsilon}
+\le
+\frac{\Delta_R(x)}{\epsilon}.
+\label{eq:adv_bound_range}
+\end{equation}
+Eq.~\ref{eq:adv_bound_range} implies that $A(x,y)\in[-\frac{\Delta_R(x)}{\epsilon},\frac{\Delta_R(x)}{\epsilon}]$.
+By Popoviciu's inequality on variances, $\mathrm{Var}_{y\in\mathcal{C}(x)}[A(x,y)]\le (\frac{\Delta_R(x)}{\epsilon})^2$, so the standard deviation
+$
+\sigma_A(x)
+\triangleq
+\sqrt{\mathrm{Var}_{y\in\mathcal{C}(x)}[A(x,y)]}
+\le
+\frac{\Delta_R(x)}{\epsilon}.
+\label{eq:sigmaA_popoviciu}
+$
+Therefore, when candidate collapse in $\mathcal{C}(x)$ yields small $\Delta_R(x)$, it forces $\sigma_A(x)$ to be small, making advantages nearly indistinguishable.
+We refer to this degeneration of learning signal as \emph{advantage compression}.
+%By Popoviciu’s inequality on variances, if $A(x,y)$, we have $\sigma_A(x,y)\le \Delta_A(x,y)/2 \le \Delta_R(x)/\epsilon$.
+
+
+%Therefore, the advantage range $\Delta_A(x,y)$ satisfies $\Delta_A(x,y) \le 2|A(x,y)| \le 2\Delta_R(x)/\epsilon$. By AM--GM inequality~\cite{hardy1952inequalities}, we then have $\sigma_A(x,y)\le \Delta_A(x,y)/2 \le \Delta_R(x)/\epsilon$.
+%As a result, when candidate collapse yields a small $\Delta_R(x)$, the within-group advantages become nearly indistinguishable as $\sigma_R(x)\to 0$.
+%We refer to this degeneration of learning signal as \emph{advantage compression}.
+
+%for any bounded set of scalars, $\sigma_R(x)\le \Delta_R(x)/2$ (by AM--GM inequality~\cite{hardy1952inequalities}), hence
+% \begin{equation}
+% \sigma_A(x)
+% \le
+% \frac{\Delta_R(x)}{2(\sigma_R(x)+\epsilon)}
+% \le
+% \frac{\Delta_R(x)}{2\epsilon}.
+% \label{eq:sigmaA_bound}
+% \end{equation}
+% Therefore, when candidate collapse yields a small $\Delta_R(x)$, it forces $\sigma_R(x)$ and consequently $\sigma_A(x)$ to be small, making within-group advantages nearly indistinguishable.
+% We refer to this degeneration of learning signal as \emph{advantage compression}.
+
+% Therefore, when candidate collapse yields a small $\Delta_R(x)$, the normalized advantages are bounded by a small value $\Delta_R(x)/\epsilon$ and thus concentrate near zero.
+% Moreover, for any bounded set of scalars, $\sigma_R(x)\le \Delta_R(x)/2$ (by AM--GM inequality~\cite{hardy1952inequalities}), so $\Delta_R(x)\to 0$ implies $\sigma_R(x)\to 0$.
+% As a result, the within-group rewards become nearly identical and the normalized advantages within $\mathcal{C}(x)$ become nearly indistinguishable.
+% We refer to this degeneration of learning signal as \emph{advantage compression}.
+
+%making the normalized advantages highly sensitive and the effective learning signal around branching decisions weak .
+
+
+\noindent\textbf{Implication.}\;
+Together, insufficient exploration and advantage compression show that decoding is not a mere inference-time heuristic~\cite{shi2024thorough}: it controls both \emph{reachability} (which high-reward items are ever surfaced) and \emph{learnability} (whether candidates provide enough reward contrast for RL). We therefore need a decoder that avoids irreversible pruning of low-probability yet high-reward branches and yields candidate groups with sufficient reward dispersion, motivating our dynamic decoding framework.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\linewidth]{figure/backbone.png}
+    \caption{Overview of the proposed self-evolving decoding-and-learning framework V-STAR.}
+    \label{fig:backbone}
+    \vspace{-0.8em}
+\end{figure*}
+
+
+\section{Methodology}
+\label{sec:method}
+Our V-STAR (Fig.~\ref{fig:backbone}) is a unified decoding-and-learning framework consisting \emph{Value-Guided Efficient Decoding} (VED) for candidate construction and \emph{Sibling-GRPO} for policy optimization. VED addresses \emph{reachability} by allocating compute to decisive prefixes under a fixed budget, while Sibling-GRPO addresses \emph{learnability} by restoring within-group learning signal under prefix coupling. 
+
+\vspace{-1em}
+\subsection{Semantic-aware Value Model Learning}
+\label{sec:value_learning}
+VED relies on lookahead value estimation to mitigate probability-driven bias on the SID prefix tree. To this end, we first learn a prefix value function $V_\phi$ that maps each prefix to its expected downstream return~\cite{schulman2017proximal}. At generation step $\ell\in\{1,\ldots,L\}$, we define the decoding state $s_\ell$ as
+$
+s_\ell \triangleq (x, y_{\leq \ell}),
+$
+where $x$ is the user context and $y_{\leq \ell}=(y_1,\ldots,y_{\ell})$ is the current SID prefix. The value function estimates the discounted return of continuing generation from $s_\ell$:
+\begin{equation}
+V_\phi(s_\ell)
+\triangleq
+\mathbb{E}\!\left[\sum_{t=\ell}^{L}\gamma^{\,t-\ell}\, r_t \ \middle|\ s_\ell\right],
+\label{eq:value_return}
+\end{equation}
+where $\gamma\in(0,1]$ is the discount factor. We parameterize $V_\phi$ as a lightweight value head on top of the policy backbone: a single shallow Transformer block (operating on the prefix hidden states) followed by an MLP regressor, enabling frequent value queries with negligible overhead.
+
+%ground-truth SID $y^\star=(y_1^\star,\ldots,y_L^\star)$ and pre-computed 
+
+\noindent\textbf{Semantic-aware dense supervision.}\;
+Learning $V_\phi$ from sparse terminal returns (non-zero only when the generated item exactly matches the ground truth) provides weak, delayed signals for intermediate prefixes. We therefore build dense semantic returns from pre-computed item embeddings, obtained by encoding each item’s textual description with a frozen text encoder. Given context $x$, let $\mathcal{C}(x)=\mathcal{D}(\pi_\theta,x)$ be the sampled candidate set. For prefix $y_{\leq \ell}$, we define the \emph{sampled prefix bucket} to be the subset of items in $\mathcal{C}(x)$ that shares this prefix:
+\begin{equation}
+\mathcal{C}(x; y_{\leq \ell})
+\triangleq
+\left\{\, y^\prime \in \mathcal{C}(x) \;|\; y^\prime_{\leq \ell} = y_{\leq \ell} \,\right\},
+\label{eq:sampled_prefix_bucket}
+\end{equation}
+where $y^\prime_{\leq \ell}$ denotes the SID prefix of the candidate item $y^\prime$.
+We then define a context-conditional \emph{prefix embedding} by averaging embeddings over this bucket:
+\begin{equation}
+\bar{\mathbf{e}}(x, y_{\leq \ell})
+\triangleq
+\frac{1}{|\mathcal{C}(x; y_{\leq \ell})|}
+\sum_{i \in \mathcal{C}(x; y_{\leq \ell})} \mathbf{e}(i),
+\label{eq:avg_prefix_emb}
+\end{equation}
+where $\mathbf{e}(i)$ is the embedding of candidate item $i$. The step-wise dense return $r_\ell$ for prefix $y_{\leq \ell}$ is then defined as:
+\begin{equation}
+r_\ell \;=\;
+\begin{cases}
+w_\ell, 
+& \text{if } y_{\leq \ell}=y^\star_{\leq \ell}, \\[4pt]
+-\,w_\ell\!\left(1-\cos\!\big(\bar{\mathbf{e}}(x, y_{\leq \ell}), \mathbf{e}(y^\star)\big)\right),
+& \text{otherwise},
+\end{cases}
+\label{eq:step_reward}
+\end{equation}
+where $w_\ell>0$ is a monotonically increasing weight with respect to $\ell$, $\cos$ denotes the cosine similarity between the embeddings, and $\mathbf{e}(y^\star)$ represents the embedding of the ground-truth item $y^\star$ for context $x$. Compared to sparse exact-match supervision, the proposed semantic-aware dense supervision provide informative feedback on mismatched prefixes by leveraging their semantic proximity to the ground-truth item, thereby improving value estimation for intermediate decoding states.
+
+
+% \paragraph{Temporal-difference learning.}
+% Given the stepwise signal in~\eqref{eq:step_reward}, we train the critic by one-step temporal-difference learning, which enforces Bellman consistency across successive prefixes. With a target network $\phi'$, the TD target and regression loss are
+% \begin{equation}
+% \tilde y_\ell \;=\; r_\ell \;+\; \gamma\, V_{\phi'}(s_{\ell+1}),
+% \qquad
+% \mathcal{L}_{V}(\phi)
+% \;=\;
+% \mathbb{E}\Big[\big(V_\phi(s_\ell)-\tilde y_\ell\big)^2\Big],
+% \label{eq:td_learning}
+% \end{equation}
+% where $s_{\ell+1}=(x,y_{<\ell+1})$. The resulting $V_\phi$ provides a cheap, reward-aligned lookahead over prefixes, which is later used to prioritize budgeted expansion toward high-upside decision points in Sec.~\ref{sec:VED}.
+
+\noindent\textbf{Temporal-difference learning.}\;
+Given the stepwise signal in~\eqref{eq:step_reward}, we train the value function by one-step temporal-difference learning, enforcing Bellman-style consistency across successive prefixes. Concretely, the TD target and regression loss are:
+\begin{equation}
+\tilde y_\ell \;=\;
+\begin{cases}
+r_\ell \;+\; \gamma\, V_{\phi}(s_{\ell+1}), & \ell < L, \\[4pt]
+r_L, & \ell = L,
+\end{cases}
+\qquad
+\mathcal{L}_{V}(\phi)
+\;=\;
+\mathbb{E}\Big[\big(V_\phi(s_\ell)-\tilde y_\ell\big)^2\Big],
+\label{eq:td_learning}
+\end{equation}
+where $s_{\ell+1}=(x,y_{\leq \ell+1})$. The resulting $V_\phi$ provides an efficient, reward-aligned lookahead over prefixes, which is later used to guide budgeted expansion toward decisive prefix nodes in Sec.~\ref{sec:VED}.
+
+
+
+\vspace{-1em}
+\subsection{Value-Guided Efficient Decoding}
+\label{sec:VED}
+With the value model as guidance, we cast semantic-ID decoding as constructing a candidate set under a strict compute budget on the SID prefix tree. Given context $x$, the decoder returns $\mathcal{C}(x)\subset\mathcal{V}^L$ that (i) contains high-reward items and (ii) enables informative within-group comparisons for groupwise RL.
+
+\noindent\textbf{A budgeted objective for candidate sets.}\;
+Let $\mathrm{Cost}(\mathcal{C}(x))$ denote the compute required to construct $\mathcal{C}(x)$, measured by the number of backbone forward tokens incurred during decoding.
+We formulate candidate construction as a constrained set optimization problem:
+\begin{equation}
+\begin{aligned}
+\max_{\mathcal{C}(x)\subseteq \mathcal{V}^L}\quad
+& \underbrace{\mathbb{E}_{y\in \mathcal{C}(x)}[R(x,y)]}_{\text{reward}}
+\;+\;
+\lambda\,\underbrace{\mathrm{Contrast}(\mathcal{C}(x))}_{\text{dispersion}} \\
+\text{s.t.}\quad
+& \mathrm{Cost}(\mathcal{C}(x)) \le B.
+\end{aligned}
+\label{eq:set_objective}
+\end{equation}
+where $\mathrm{Contrast}(\cdot)$ is a set-level regularizer that encourages within-group discriminability, e.g., by increasing reward dispersion and mitigating prefix coupling (Sec.~\ref{sec:prob_driven_decoding_bias}). The budget $B$ captures the computational constraint in recommendation.
+
+\noindent\textbf{Value-based scoring with entropy regularization.}\;
+Directly optimizing Eq.~\eqref{eq:set_objective} is intractable due to the exponential SID space. VED therefore allocates the decoding budget to a small set of \emph{decisive prefixes}. The key question is how to rank prefix states $s=(x,y_{\le \ell})$ for further expansion. To maximize the expected improvement per unit cost, prefix expansion should balance \emph{exploitation} and \emph{exploration}. We therefore define a prefix priority score:
+\begin{equation}
+G(s) \ \triangleq\
+\begin{cases}
+V_\phi(s) \;+\; \lambda\,\mathcal{H}_\theta(s), & \ell < L, \\[4pt]
+V_\phi(s), & \ell = L,
+\end{cases}
+\label{eq:acq}
+\end{equation}
+where $V_\phi(s)$ is the predicted downstream return from prefix $s$, $\lambda$ is the regularization weight, and $\mathcal{H}_\theta(s)$ is the entropy term that measures how uncertain the policy is about the next token:
+\begin{equation}
+\mathcal{H}_\theta(s) \ \triangleq\ -\sum_{y_{\ell+1}\in\mathcal{V}} \pi_\theta(y_{\ell+1}\mid x,y_{\leq \ell})\log \pi_\theta(y_{\ell+1}\mid x,y_{\leq \ell}).
+\label{eq:entropy}
+\end{equation}
+For terminal prefixes ($\ell=L$), the priority reduces to $V\phi(s)$.
+
+% \paragraph{Value-based scoring with entropy regularization.} Directly optimizing Eq.~\eqref{eq:set_objective} is intractable due to the exponential SID space. VED approximates it by allocating budget to a small number of \emph{decisive prefixes}, viewing expanding a prefix as an investment whose payoff is the expected improvement of the set objective per unit cost.
+% For a prefix state $s=(x,y_{\leq \ell})$, we assign it with a prefix priority score defined as:
+% \begin{equation}
+% G(s) \ \triangleq\
+% \begin{cases}
+% V_\phi(s) \;+\; \lambda\,\mathcal{H}_\theta(s), & \ell < L, \\[4pt]
+% V_\phi(s), & \ell = L,
+% \end{cases}
+% \label{eq:acq}
+% \end{equation}
+% where
+% \begin{equation}
+% \mathcal{H}_\theta(s) \ \triangleq\ -\sum_{y_{\ell+1}\in\mathcal{V}} \pi_\theta(y_{\ell+1}\mid x,y_{\leq \ell})\log \pi_\theta(y_{\ell+1}\mid x,y_{\leq \ell}).
+% \label{eq:entropy}
+% \end{equation}
+% Here, $V_\phi(s)$ predicts the expected downstream return from continuing generation at prefix $s$, $\lambda$ is the regularization weight, and $\mathcal{H}_\theta(s)$ is the entropy term that measures how uncertain the policy is about the next token (thus only meaningful when $\ell < L$).
+
+% From Eq.~\eqref{eq:acq} it can be seen that $G(s)$ prioritizes \emph{high-value, high-uncertainty} prefixes. Intuitively, $V_\phi(s)$ indicates how promising the prefix is, while $\mathcal{H}_\theta(s)$ reflects how information-rich the next-step distribution is. Prioritizing prefixes that are both promising and information-rich allocates extra budget to decision points where further expansion is most likely to improve the candidate set. %This mixed criterion is the key to ``dynamic'' budget allocation without resorting to uniform expansion.
+
+
+%, together with a frontier set $\mathcal{F}(\mathcal{T})$ of expandable nodes
+
+\noindent\textbf{Score-based efficient decoding.}\;
+\label{sec:VED_solver}
+With the above value-based prefix score, the decoding process performs budgeted search and expansion on a search tree $\mathcal{T}$ over prefix states $s=(x,y_{\leq \ell})$.  The procedure consists of four stages: \textcircled{1} initialization, \textcircled{2} selection and traversal, \textcircled{3} gated expansion, and \textcircled{4} backpropagation.
+
+\textit{\textcircled{1} Initialization.}
+We initialize $\mathcal{T}$ using prefixes obtained by a low-cost probability-guided beam search under $\pi_\theta$. The beam width in this warm start is set smaller than the final candidate set size to limit overhead. The resulting prefix tree reveals which prefixes the policy prefers and which branches are pruned early. We evaluate each node in the initial tree once to populate $\{V_\phi(s), \mathcal{H}_\theta(s), G(s)\}$ and record whether the node admits unexpanded valid children.
+
+\textit{\textcircled{2} Selection and traversal.}
+After initialization, we repeatedly select nodes and traverse a root-to-leaf path. Let $N(s)$ be the visit count of node $s$ and $N_{\mathrm{root}}$ the number of traversals so far, we select nodes with a UCB-style score~\cite{kocsis2006bandit}:
+\begin{equation}
+U(s)
+\triangleq
+G(s)
+\;+\;
+\beta \cdot \sqrt{\frac{\ln\!\big(N_{\mathrm{root}}+1\big)}{N(s)+1}},
+\label{eq:VED_select}
+\end{equation}
+where $\beta$ controls exploration. Starting from the root, we recursively choose the child with the largest $U(s)$ until reaching a leaf or terminal node.
+
+\textit{\textcircled{3} Gated expansion.}
+Along the selected path, we expand only prefixes that are decisive relative to other prefixes at the same depth. Let $\mathcal{T}_\ell$ denote the set of nodes in the current tree at depth $\ell$, and define the depth-wise average priority
+\begin{equation}
+\bar{G}_\ell
+\triangleq
+\frac{1}{|\mathcal{T}_\ell|}
+\sum_{u\in\mathcal{T}_\ell} G(u).
+\label{eq:depth_avg}
+\end{equation}
+For any visited node $s=(x,y_{\leq \ell})$ on the path that is not fully expanded, we trigger one-step expansion if and only if
+$
+G(s)\ \ge\ \bar{G}_\ell.
+\label{eq:VED_gate}
+$
+%restrict the action space to the top-$q$ valid next tokens under $\pi_\theta(\cdot\mid s)$ among yet-unexpanded children. We then 
+When triggered, we add one new child to $s$ by sampling a token from its yet-unexpanded valid children according to their normalized policy probabilities.
+
+\textit{\textcircled{4} Backpropagation.}
+For each newly added child $s_{\mathrm{new}}$, we evaluate $(V_\phi,\mathcal{H}_\theta,G)$ and update statistics along its ancestor chain, including visit count $N(\cdot)$ and depth-wise average priority scores.
+
+The above stages \textcircled{2}--\textcircled{4} are repeated until $\mathrm{Cost}(\mathcal{T}) > B$, where $\mathrm{Cost}(\cdot)$ counts the number of backbone forward tokens. After termination, we extract a candidate set $\mathcal{C}(x)\subset\mathcal{V}^L$ from the search tree $\mathcal{T}$ in a value-aware manner. In practice, we sample top-valued SIDs from depth-$L$ leaf nodes. In rare cases, if insufficient leaf nodes exist, we fill the remainder by completing high-value prefixes in the tree using cached $\pi_\theta$, without additional backbone forwards. The resultant candidate set $\mathcal{C}$ improves reachability by exploring low-probability but high-value prefixes.
+
+
+
+% The resultant candidate set  $\mathcal{C}$ improves reachability by exploring low-probability yet valuable prefixes, while maintaining sufficient within-set reward dispersion by spreading refinement across multiple high-impact branches.
+
+
+
+
+
+
+
+% \subsubsection{A sparse expansion operator}
+% We instantiate the above principle with a sparse expansion operator that grows a partial prefix tree by repeatedly expanding the frontier prefix with maximal acquisition score, until the budget is exhausted.
+
+% Let $\mathcal{T}$ denote the current explored prefix tree, and let $\mathcal{F}(\mathcal{T})$ be its frontier, i.e., the set of expandable prefix states contained in $\mathcal{T}$. VED iteratively refines $\mathcal{T}$ via
+% \begin{equation}
+% s^\star \in \arg\max_{s\in \mathcal{F}(\mathcal{T})} G(s),
+% \qquad
+% \mathcal{T} \leftarrow \mathrm{Expand}\!\left(\mathcal{T}, s^\star; \pi_\theta, K\right),
+% \qquad
+% \text{until } \mathrm{Cost}(\mathcal{T})\ge B,
+% \label{eq:sparse_refine}
+% \end{equation}
+% where $\mathrm{Expand}(\cdot)$ performs a \emph{budgeted local refinement} around $s^\star$: it considers only a bounded candidate pool of actions (tokens) and adds at most $K$ children according to the policy prior $\pi_\theta(\cdot\mid s^\star)$, evaluates newly created prefixes via $(V_\phi,\mathcal{H}_\theta)$, and updates the tree statistics by backing up the newly observed scores along the ancestor path.
+% Crucially, the operator is \emph{sparse}: it invests computation in non-contiguous regions of the tree dictated by~\eqref{eq:acq}, rather than uniformly expanding all beams. This is precisely what restores reachability of low-prior yet high-reward branches under a fixed budget.
+
+
+\newcommand{\cmark}{\scalebox{0.85}{\ding{51}}}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Performance comparison on Industrial and Office. Gen. means Generative model. Best results are \textbf{bolded}.}
+\setlength{\tabcolsep}{2.7pt}
+\begin{tabular}{l c c c c c c c c c c c c c c c}
+\toprule
+\cmidrule(lr){5-10}\cmidrule(lr){11-16}
+\multirow{2}{*}{{Model}} & \multirow{2}{*}{{Gen.}} & \multirow{2}{*}{{SID}} & \multirow{2}{*}{{RL}}& \multicolumn{6}{c}{Industrial} & \multicolumn{6}{c}{Office} \\
+\cmidrule(lr){5-10}\cmidrule(lr){11-16}
+& & & 
+& HR@3 & HR@5 & HR@10 & NDCG@3 & NDCG@5 & NDCG@10
+& HR@3 & HR@5 & HR@10 & NDCG@3 & NDCG@5 & NDCG@10 \\
+\midrule
+
+GRU4Rec  & $-$ & $-$ & $-$
+& 0.0638 & 0.0774 & 0.0999 & 0.0542 & 0.0598 & 0.0669
+& 0.0629 & 0.0789 & 0.1019 & 0.0528 & 0.0595 & 0.0669 \\
+Caser    & $-$ & $-$ & $-$
+& 0.0618 & 0.0717 & 0.0942 & 0.0514 & 0.0555 & 0.0628
+& 0.0748 & 0.0865 & 0.1093 & 0.0615 & 0.0664 & 0.0737 \\
+SASRec   & $-$ & $-$ & $-$
+& 0.0790 & 0.0909 & 0.1088 & 0.0700 & 0.0748 & 0.0806
+& 0.0861 & 0.0949 & 0.1120 & 0.0769 & 0.0805 & 0.0858 \\
+\midrule
+
+HSTU     & \cmark & $-$ & $-$
+& 0.0927 & 0.1037 & 0.1163 & 0.0885 & 0.0918 & 0.0958
+& 0.1134 & 0.1252 & 0.1400 & 0.1031 & 0.1079 & 0.1126 \\
+BIGRec   & \cmark & $-$ & $-$
+& 0.0931 & 0.1092 & 0.1370 & 0.0841 & 0.0907 & 0.0997
+& 0.1069 & 0.1204 & 0.1434 & 0.0961 & 0.1017 & 0.1091 \\
+\midrule
+
+TIGER    & \cmark & \cmark & $-$
+& 0.0852 & 0.1010 & 0.1321 & 0.0742 & 0.0807 & 0.0908
+& 0.0986 & 0.1163 & 0.1408 & 0.0852 & 0.0960 & 0.1002 \\
+LCRec    & \cmark & \cmark & $-$
+& 0.0915 & 0.1057 & 0.1332 & 0.0805 & 0.0862 & 0.0952
+& 0.0921 & 0.1048 & 0.1237 & 0.0807 & 0.0859 & 0.0920 \\
+D3       & \cmark & \cmark & $-$
+& 0.1024 & 0.1213 & 0.1500 & 0.0991 & 0.0989 & 0.1082
+& 0.1204 & 0.1406 & 0.1634 & 0.1055 & 0.1139 & 0.1213 \\
+\midrule
+
+S-DPO    & \cmark & \cmark & \cmark
+& 0.1032 & 0.1238 & 0.1524 & 0.0906 & 0.0991 & 0.1082
+& 0.1169 & 0.1356 & 0.1587 & 0.1033 & 0.1110 & 0.1255 \\
+MiniOneRec
+         & \cmark & \cmark & \cmark
+& 0.1143 & 0.1321 & 0.1586 & 0.1011 & 0.1084 & 0.1167
+& 0.1217 & 0.1420 & 0.1634 & 0.1088 & 0.1172 & 0.1242 \\
+\midrule
+
+\textbf{Ours-Train}
+         & \cmark & \cmark & \cmark
+& \textbf{0.1189} & \textbf{0.1361} & \textbf{0.1641} & \textbf{0.1057} & \textbf{0.1128} & \textbf{0.1217}
+& \textbf{0.1344} & \textbf{0.1500} & \textbf{0.1746} & \textbf{0.1196} & \textbf{0.1260} & \textbf{0.1340} \\
+
+% \textbf{Ours}
+%          & \cmark & \cmark & \cmark
+% & \textbf{0.1204} & \textbf{0.1366} & \textbf{0.1650} & \textbf{0.1066} & \textbf{0.1141} & \textbf{0.1233}
+% & \textbf{0.1353} & \textbf{0.1518} & \textbf{0.1760} & \textbf{0.1213} & \textbf{0.1257} & \textbf{0.1352} \\
+
+\bottomrule
+\end{tabular}
+\vspace{-0.8em}
+\label{tab:perf_compare}
+\end{table*}
+
+
+
+\subsection{Sibling-GRPO}
+\label{sec:sibling_grpo}
+While VED improves reachability and increases candidate reward dispersion, hierarchical SIDs still induce common-prefix sibling node groups in $\mathcal{C}(x)$. Sibling-GRPO exploits these groups to recover strong learning signals exactly at the decisive branching actions.
+
+\noindent\textbf{Sibling groups and sibling nodes.}\;
+An SID $y=(y_1,\ldots,y_L)$ corresponds to a root-to-leaf path on a depth-$L$ prefix tree. Fix a depth $\ell\in\{1,\ldots,L\}$ and let $h\in\mathcal{V}^{\ell-1}$ denote a parent prefix at depth $\ell-1$. We first define the \emph{sibling group} under $h$ as the sampled items that share this parent prefix:
+\begin{equation}
+\mathcal{G}(h)
+\ \triangleq\
+\left\{\, y\in \mathcal{C}(x)\ \middle|\ y_{\leq \ell-1}=h \,\right\}.
+\label{eq:cand_group}
+\end{equation}
+Next, we define the \emph{sibling node set} under $h$ as the set of child nodes at depth $\ell$ that extend $h$ by one token:
+\begin{equation}
+\mathcal{S}(h)
+\ \triangleq\
+\left\{\, v\ |\ v\in\mathcal{V},\ \exists\, y\in\mathcal{G}(h)\ \text{s.t.}\ y_\ell=v \,\right\}.
+\label{eq:sibling_nodes}
+\end{equation}
+\noindent\textbf{Relative advantages over sibling nodes.}\;
+Sibling-GRPO is computed within $\mathcal{S}(h)$ by assigning each child node $v\in\mathcal{S}(h)$ a node-level score defined as the average reward of candidates routed through that child:
+\begin{equation}
+\begin{aligned}
+\bar{R}(x;h,v)
+\ &\triangleq\
+\frac{1}{|\mathcal{G}(h,v)|}
+\sum_{y\in \mathcal{G}(h,v)} R(x,y), \\
+\mathcal{G}(h,v)
+\ &\triangleq\
+\{\, y\in\mathcal{G}(h)\mid y_\ell=v \,\}.
+\end{aligned}
+\label{eq:node_avg_reward}
+\end{equation}
+This construction yields localized, sibling-level comparisons that focus learning on the branching decision at depth $\ell$. Let $\mu_h(x)$ and $\sigma_h(x)$ denote the mean and standard deviation of $\{\bar{R}(x;h,v)\}_{v\in\mathcal{S}(h)}$, the sibling-relative node advantage for a child $v \in\mathcal{S}(h)$ is
+\begin{equation}
+A_{\mathrm{node}}(x;h,v)
+=
+\frac{\bar{R}(x;h,v)-\mu_h(x)}{\sigma_h(x)+\epsilon}.
+\label{eq:node_adv}
+\end{equation}
+Compared with global normalization over $\mathcal{C}(x)$, this sibling-node advantage prevents within-parent advantages from being washed out by coarse variations across unrelated prefixes, and it concentrates learning signals on the branching action $y_\ell$ that differentiates siblings under the same parent prefix.
+
+\noindent\textbf{Objective.}\;
+Sibling-GRPO retains the GRPO update form but applies it to the sibling nodes within each depth. For a parent prefix $h\in\mathcal{V}^{\ell-1}$ at depth $\ell-1$ and child node $v \in\mathcal{S}(h)$. We define the token-level importance ratio as 
+$
+\rho_\theta(v\!\mid\!x,h)
+\ \triangleq\
+\frac{\pi_\theta(v\mid x,h)}{\pi_{\theta_{\mathrm{old}}}(v\mid x,h)},
+\label{eq:token_ratio}
+$
+where $\pi_{\theta_{\mathrm{old}}}$ denotes the frozen behavior policy used to sample $\mathcal{C}(x)$. We then maximize the following sibling-node GRPO objective aggregated over depths:
+\begin{equation}
+\mathcal{J}_{\mathrm{sib}}(\theta)
+=
+\mathbb{E}_x
+\left[
+\frac{1}{|\mathcal{C}(x)|}
+\sum_{\ell=1}^{L}
+\sum_{h}
+\sum_{v\in\mathcal{S}(h)}
+A_{\mathrm{node}}(x;h,v)\,
+\rho_\theta(v\!\mid\!x,h)
+\right].
+\label{eq:sib_grpo}
+\end{equation}
+This formulation performs GRPO-style~\cite{shao2024deepseekmath} updates on branching tokens at each depth, with sibling-normalized advantages computed across competing child nodes under the same parent prefix.
+
+
+
+
+
+\vspace{-1em}
+\subsection{Training and Testing}
+\label{sec:self_evolving}
+\textbf{Training-Time Self-Evolution.}\; Our V-STAR primarily focuses on \emph{training-time} improvement.
+During training, VED and Sibling-GRPO form a closed loop: VED uses the value $V_\phi$ together with the entropy signal to selectively refine search and generate structured candidate groups with better reachability and clearer reward contrast. Sibling-GRPO then converts these structured groups into stable, high-quality policy updates by comparing sibling alternatives at each branching level. As training progresses, both $\pi_\theta$ and $V_\phi$ improve, which sharpens the acquisition score in Eq.~\eqref{eq:acq} and further improves subsequent candidate construction—yielding a self-evolving decoding-and-learning loop.
+
+\noindent\textbf{Testing-Time Decoding.}\;
+At test time, we use standard beam search~\cite{sutskever2014sequence} decoding for efficiency and compatibility with existing serving pipelines~\cite{deng2025onerec}.
+Optionally, decoding with VED can also be applied at inference: the learned $V_\phi$ and the same acquisition rule Eq.~\eqref{eq:acq} guide the decoder to select a small number of high-potential prefixes under a fixed compute budget, improving long-tail coverage and candidate diversity when additional search is allowed.
+
+
+% \begin{algorithm}[t]
+% \caption{V-STAR Training Loop: VED Sampling + Sibling-GRPO Update}
+% \label{alg:ved_sibgrpo_short}
+% \KwIn{Policy $\pi_\theta$, value $V_\phi$, token budget $B$; beam width $W$}
+% \For {each training iteration}{
+%   Sample a minibatch of contexts $\{x\}$\;
+%   \For{Each $x$}{
+%     \tcp{value-guided candidate construction}
+%     $\mathcal{T}\leftarrow$ Initialize Tree with Beam Search
+%     \While{$\mathrm{Cost}(\mathcal{T})<B$ \textbf{and} $\mathcal{F}(\mathcal{T})\neq\emptyset$}{
+      
+%       $\mathcal{T}\leftarrow$ Traversal and expand node with Eq.~\ref{eq:VED_gate} \;
+%       { update statistics along its ancestor chain}
+%     }
+%     $\mathcal{C}(x)\leftarrow$ ExtractLeaves$(\mathcal{T})$ a\;
+%     Obtain rewards $\{R(x,y)\}_{y\in\mathcal{C}(x)}$\;
+
+%     \tcp{Update $\theta$ using GRPO with Sibling GRPO}
+%   }
+% }
+% \end{algorithm}
+
+
+
+\section{Experiments}
+% We conduct a series of experiments to validate the effectiveness of our proposed framework. Our evaluation is designed to answer the following key research questions:
+
+% RQ1: Overall Performance. Does our proposed framework (VED + Sibling-GRPO) achieve state-of-the-art performance compared to strong generative and non-generative baselines?
+
+% RQ2: Impact of Decoding Strategy. How do the different value-guided decoding strategies contribute to the final performance compared to a standard beam search?
+
+% RQ3: Qualitative Analysis. Can we qualitatively observe how our value-guided search discovers better recommendations than purely probability-based decoding?
+
+% RQ4: Importance of the Training Objective. How crucial is the Sibling-GRPO objective for stable and effective policy optimization compared to the standard GRPO?
+
+
+
+% Preamble:
+% \usepackage{amssymb}  % for \checkmark
+
+% put this in preamble (or right before the table)
+
+
+
+% \vspace{3pt}
+
+\subsection{Experimental Setup}
+\textbf{Datasets and Evaluation.}\;
+Experiments are conducted on both offline public dataset and online data. For offline evaluation, we use Amazon Review dataset~\cite{hou2024bridging} with two subsets \textit{Industrial} and \textit{Office Products}. Following the standard next-item prediction protocol, interactions are ordered chronologically per user. The model takes the entire historical sequence as input and predicts the next interacted item. For data preprocessing, we follow the procedure described in ~\cite{kong2025minionerec}. Each item is represented by a 3-level SID derived from the RQ-VAE codebook~\cite{rajput2023recommender}, and all generative decoders operate under a hard constraint that restricts outputs to valid SIDs, ensuring that each generated sequence maps to a unique catalog item. We report standard metrics Hit Rate (HR) and Normalized Discounted Cumulative
+Gain (NDCG). HR@K measures whether the ground-truth next item appears in the Top-$K$ list, while NDCG@K further accounts for its ranked position. Unless otherwise specified, we set $K=3, 5, 10$ in the main tables. For online evaluation, we use real traffic data, which will be detailed in Sec.~\ref{subsec:online_performance}.
+
+
+
+
+
+% \textbf{Baselines.}
+% We compare against (i) \emph{Constrained Beam Search}, the default decoding strategy that generates Top-$K$ recommendations under SID validity constraints; (ii) \emph{Value-guided Beam}, which augments beam ranking using an auxiliary value function to mitigate myopic probability dominance; (iii) \emph{MCTS-based Decoding}, which performs budgeted tree search under the same SID constraints to improve exploration of low-prior but potentially high-reward candidates; and (iv) \emph{SASRec}, a strong non-generative sequential recommender as a ranking baseline and an optional source of collaborative-filtering reward signal.
+
+% \textbf{Evaluation Metrics.}
+% We report standard Top-$K$ recommendation metrics, \textbf{HR@K} and \textbf{NDCG@K}. HR@K measures whether the ground-truth next item appears in the Top-$K$ list, while NDCG@K further accounts for its ranked position. Unless otherwise specified, we set $K=3，5，10$ in the main tables.%, and include additional $K$ values in the appendix when needed. %During RL, we additionally monitor reward and advantage statistics (mean/variance) to diagnose training stability.
+
+% \textbf{Implementation Details.}
+% We adopt a two-stage training pipeline: supervised fine-tuning (SFT) followed by RL (GRPO). SFT is trained with data-parallelism on 8 GPUs using a global batch size of 1024 and fixed random seed. RL is trained with ZeRO-style sharding on 8 GPUs. We use batch size 64, gradient accumulation 2, $G{=}16$ sampled candidates per prompt, learning rate $1\times10^{-5}$, and KL regularization coefficient $\beta{=}10^{-3}$. 
+
+
+% \noindent\textbf{Implementation Details.}\;
+% We use Qwen2.5-1.5B~\cite{qwen2.5} as the model backbone. All models are trained in two stages: supervised fine-tuning (SFT) followed by RL with GRPO. SFT is run with data parallelism on 8 GPUs with a global batch size of 1024 and a fixed random seed. RL is trained on 8 GPUs with a per-GPU batch size 64 and gradient accumulation step 2.The learning rate is set to $1\times10^{-5}$, and KL regularization coefficient is $\beta{=}10^{-3}$. For decoding, we construct 16 item candidates per prompt. During training-time, VED is executed for candidate construction. At test time, we adopt standard beam search as the default decoder for efficiency. %, and optionally enable VED when additional compute is allowed.
+% % All hyperparameters are selected on the validation set and kept fixed for all reported results.
+
+\noindent\textbf{Implementation Details.}\;
+We use Qwen2.5-1.5B~\cite{qwen2.5} as the model backbone. All models are trained in two stages: supervised fine-tuning (SFT) followed by RL with GRPO. SFT is run with data parallelism on 8 GPUs with a global batch size of 1024 and a fixed random seed. RL is trained on 8 GPUs with a per-GPU batch size 64 and gradient accumulation step 2. The learning rate is set to $1\times10^{-5}$, and KL regularization coefficient is $10^{-3}$. During training, {VED} is utilized to construct $16$ candidates per query, with a prefix length $L=3$ and hierarchical weights $w_l = [0.3, 0.5, 1.0]$. The discount factor $\gamma$ in Eq.~\ref{eq:td_learning} is set to $0.99$ and the exploration coefficient $\lambda$ in Eq.~\ref{eq:acq} is set to $0.1$. The beam width for VED prefix-tree initialization is set to 8. To ensure serving efficiency, we adopt standard {beam search} as the default decoder during inference, effectively decoupling the exploration-intensive training from latency-critical deployment.
+
+\vspace{-1.2em}
+\subsection{Performance on Offline Dataset}
+The proposed method is compared with recent state-of-the-art baselines under the same setting, including traditional embedding-based sequential recommenders (GRU4Rec \cite{GRU4Rec}, Caser \cite{Caser}, and SASRec \cite{SASRec}), generative non-SID baselines (HSTU \cite{HSTU-ICML-2024}, BIGRec \cite{BIGRec-TORS-2025}), SID-based generative recommenders without RL-style optimization (TIGER \cite{rajput2023recommender}, LCRec \cite{LC-Rec-ICDE-2024}, D3 \cite{D3}), and SID-based methods with RL or preference optimization (S-DPO \cite{kong2025sdpo}, MiniOneRec~\cite{kong2025minionerec}). Table~\ref{tab:perf_compare} summarizes results on \textit{Industrial} and \textit{Office}. Our method consistently achieve the highest performance among all methods. Compared with the strongest RL baseline MiniOneRec, our method achieves a 4.0\% relative improvement in HR@3 and a 4.3\% relative improvement in NDCG@10 on \textit{Industrial}. On \textit{Office}, the gain is more pronounced, reaching a 10.4\% relative improvement in HR@3. These consistent gains indicate that value-guided, budgeted exploration can reliably surface higher-reward SID candidates under strict prefix constraints, while tree-structured advantage reinforcement strengthens training by concentrating gradients on the branching decisions that actually differentiate sibling items.
+% The proposed method is compared with representative state-of-the-art baselines under the same setting, including traditional embedding-based sequential recommenders (GRU4Rec, Caser, SASRec), generative non-SID baselines (HSTU, BIGRec), SID-based generative recommenders without RL-style optimization (TIGER, LCRec, D3), and SID-based methods with RL or preference optimization (S-DPO, MiniOneRec). The comparative results on \textit{Industrial} and \textit{Office} are reported in Table~\ref{tab:perf_compare}, and it is evidenced by the following observations: On the Industrial dataset, V-STAR achieves a 4.0\% and 3.4\% relative improvement in HR@3 and NDCG@10 over the strongest RL baseline, MiniOneRec. On the Office dataset, the gains are even more pronounced, with an improvement of 10.4\% in HR@3. These results validate the efficacy of combining value-guided exploration with tree-structured advantage reinforcement. 
+
+
+
+% Table~\ref{tab:perf_compare} reports results on \textit{Industrial\_and\_Scientific} and \textit{Office\_Products}. The proposed method achieves the best HR@K and NDCG@K across all cutoffs on both datasets, outperforming (i) \emph{traditional sequential recommenders} (GRU4Rec/Caser/SASRec), (ii) \emph{generative recommenders} (HSTU/TIGER/LCRec), and (iii) \emph{LLM-based semantic-ID recommenders} (BIGRec/D3/S-DPO/MiniOneRec). Beyond the overall gains, two patterns help explain why the improvement persists against strong SOTA baselines.
+
+% \emph{First, the advantage over traditional and non-RL generative models suggests that the dominant difficulty is not merely modeling user sequences, but \textbf{searching the constrained SID space}.}
+% Even strong backbones can be bottlenecked by probability-driven decoding: beam-style procedures tend to commit early to a small set of high-probability prefixes, which reduces long-tail reachability and produces highly correlated candidate lists. Our budgeted decoding explicitly addresses this by reallocating compute to a few \emph{decisive} prefixes---those that are simultaneously high-upside (large $V_\phi$) and highly contested (large entropy)---so improvements manifest consistently in both HR (recall) and NDCG (ranking), rather than only at a single $K$.
+
+% \emph{Second, the advantage over LLM-based SOTA (including preference-optimized variants) indicates that \textbf{RL is limited by the quality and structure of candidate groups}.}
+% Methods such as DPO/GRPO-style training can only exploit relative signal within the sampled group; when candidates share long prefixes (prefix coupling), rewards become strongly correlated and global baselines compress advantages, weakening gradients. Our approach tackles this at two levels: VED increases within-group contrast by injecting controlled branch diversity under a fixed budget, and Sibling-GRPO further restores learnability by normalizing rewards \emph{within} genealogically comparable sibling sets. This makes policy updates concentrate on the actual branching decisions that differentiate items under the same prefix, which is precisely where semantic-ID generation is most error-prone. Together, these two mechanisms explain why gains remain when comparing to MiniOneRec-style constrained generation and to RL-enhanced LLM baselines: the proposed method improves both \textbf{reachability} (better candidates) and \textbf{learnability} (better training signal) under the same prompt and compute constraints.
+
+
+
+
+
+% \begin{table*}[t]
+% \centering
+% \small
+% \setlength{\tabcolsep}{5pt}
+% \begin{tabular}{l l l c c c c c c}
+% \toprule
+% Dataset & Category & Model
+% & HR@3 & HR@5 & HR@10 & NDCG@3 & NDCG@5 & NDCG@10 \\
+% \midrule
+
+% \multirow{14}{*}{Industrial}
+% & \multirow{3}{*}{Traditional}
+% & GRU4Rec  & 0.0638 & 0.0774 & 0.0999 & 0.0542 & 0.0598 & 0.0669 \\
+% & & Caser   & 0.0618 & 0.0717 & 0.0942 & 0.0514 & 0.0555 & 0.0628 \\
+% & & SASRec  & 0.0790 & 0.0909 & 0.1088 & 0.0700 & 0.0748 & 0.0806 \\
+% \cmidrule(lr){2-9}
+
+% & \multirow{3}{*}{Generative}
+% & HSTU     & 0.0927 & 0.1037 & 0.1163 & 0.0885 & 0.0918 & 0.0958 \\
+% & & TIGER   & 0.0852 & 0.1010 & 0.1321 & 0.0742 & 0.0807 & 0.0908 \\
+% & & LCRec   & 0.0915 & 0.1057 & 0.1332 & 0.0805 & 0.0862 & 0.0952 \\
+% \cmidrule(lr){2-9}
+
+% & \multirow{4}{*}{LLM-based}
+% & BIGRec   & 0.0931 & 0.1092 & 0.1370 & 0.0841 & 0.0907 & 0.0997 \\
+% & & D3      & 0.1024 & 0.1213 & 0.1500 & 0.0991 & 0.0989 & 0.1082 \\
+% & & S-DPO   & 0.1032 & 0.1238 & 0.1524 & 0.0906 & 0.0991 & 0.1082 \\
+% & & MiniOneRec & 0.1143 & 0.1321 & 0.1586 & 0.1011 & 0.1084 & 0.1167 \\
+% \cmidrule(lr){2-9}
+
+% & \multicolumn{2}{l}{\textbf{Ours}}
+% & \textbf{0.1189} & \textbf{0.1361} & \textbf{0.1641} & \textbf{0.1057} & \textbf{0.1128} & \textbf{0.1217} \\
+
+
+% \midrule
+
+% \multirow{14}{*}{Office}
+% & \multirow{3}{*}{Traditional}
+% & GRU4Rec  & 0.0629 & 0.0789 & 0.1019 & 0.0528 & 0.0595 & 0.0669 \\
+% & & Caser   & 0.0748 & 0.0865 & 0.1093 & 0.0615 & 0.0664 & 0.0737 \\
+% & & SASRec  & 0.0861 & 0.0949 & 0.1120 & 0.0769 & 0.0805 & 0.0858 \\
+% \cmidrule(lr){2-9}
+
+% & \multirow{3}{*}{Generative}
+% & HSTU     & 0.1134 & 0.1252 & 0.1400 & 0.1031 & 0.1079 & 0.1126 \\
+% & & TIGER   & 0.0986 & 0.1163 & 0.1408 & 0.0852 & 0.0960 & 0.1002 \\
+% & & LCRec   & 0.0921 & 0.1048 & 0.1237 & 0.0807 & 0.0859 & 0.0920 \\
+% \cmidrule(lr){2-9}
+
+% & \multirow{4}{*}{LLM-based}
+% & BIGRec   & 0.1069 & 0.1204 & 0.1434 & 0.0961 & 0.1017 & 0.1091 \\
+% & & D3      & 0.1204 & 0.1406 & 0.1634 & 0.1055 & 0.1139 & 0.1213 \\
+% & & S-DPO   & 0.1169 & 0.1356 & 0.1587 & 0.1033 & 0.1110 & 0.1255 \\
+% & & MiniOneRec & 0.1217 & 0.1420 & 0.1634 & 0.1088 & 0.1172 & 0.1242 \\
+% \cmidrule(lr){2-9}
+
+% & \multicolumn{2}{l}{\textbf{Ours}}
+% & \textbf{0.1344} & \textbf{0.1500} & \textbf{0.1746} & \textbf{0.1196} & \textbf{0.1260} & \textbf{0.1340} \\
+
+% \bottomrule
+% \end{tabular}
+% \vspace{2pt}
+% \caption{Performance comparison on Industrial and Office.}
+% \label{tab:perf_compare}
+% \end{table*}
+
+% \vspace{-1.2em}
+% \subsection{Online Performance}
+% \label{subsec:online_performance}
+% To validate V-STAR in a real business environment, we conduct online A/B testing for 3 days on 5\% of live request traffic on \textit{WeChat Channels}. We use \texttt{GMV} (Gross Merchandise Volume) as the primary metric, i.e., the total transaction value attributed to advertising recommendations and a core indicator of commercial revenue. We compare against the \textit{BeamSearch}$+$\textit{GRPO} baseline. The online results show that V-STAR achieves a {0.81\%} relative improvement in \texttt{GMV} and a {1.01\%} relative improvement in \texttt{GMV-Normal} (GMV from click/conversion-optimized ad). These gains suggest that value-aware candidate construction, together with Sibling-GRPO, helps V-STAR more reliably surface high-commercial-value items, thereby increasing transaction volume.
+
+
+\vspace{-1.2em}
+% \subsection{Online Performance}
+% \label{subsec:online_performance}
+% To validate V-STAR in a real business environment, we conduct online A/B testing for 7 days on 5\% of live request traffic on \textit{WeChat Channels}. We use \texttt{GMV} (Gross Merchandise Volume) as the primary metric, i.e., the total transaction value attributed to advertising recommendations and a core indicator of commercial revenue. We compare against the \textit{BeamSearch}$+$\textit{GRPO} baseline. The online results show that V-STAR achieves a {0.81\%} relative improvement in \texttt{GMV} and a {1.01\%} relative improvement in \texttt{GMV-Normal} (GMV from click/conversion-optimized ad). These gains suggest that value-aware candidate construction, together with Sibling-GRPO, helps V-STAR more reliably surface high-commercial-value items, thereby increasing transaction volume.
+
+\subsection{Online Performance}
+\label{subsec:online_performance}
+To validate V-STAR in a real business environment, we conduct online A/B testing for 5 days on 5\% of live request traffic on \textit{WeChat Channels}. We use \texttt{GMV} (Gross Merchandise Volume) as the primary metric, i.e., the total transaction value attributed to advertising recommendations and a core indicator of commercial revenue. We compare against the \textit{BeamSearch}$+$\textit{GRPO} baseline. The online results show that V-STAR achieves a {1.23\%} relative improvement in \texttt{GMV} and a {1.87\%} relative improvement in \texttt{GMV-Normal} (GMV from click/conversion-optimized ad). These gains suggest that value-aware candidate construction, together with Sibling-GRPO, helps V-STAR more reliably surface high-commercial-value items, thereby increasing transaction volume.
+
+% \vspace{-1.2em}
+% \subsection{Online Performance}
+% \label{subsec:online_performance}
+% To validate the advantage of V-STAR in actual business environment, experiments are conducted with real request traffic. Following the paradigm in GPR~\cite{Zhang2025GPR}, \texttt{final\_value} is used as the core evaluation metric, which is a comprehensive value score integrating business indicators such as eCPM, pCTR, and pCVR. Performance is compared against the \textit{BeamSearch}$+$\textit{GRPO} baseline. Results show that V-STAR achieves a {3.87\% relative improvement} in average \texttt{final\_value} and a {5.23\% relative improvement} in maximum \texttt{final\_value}. These gains indicate that value-aware optimized sampling together with Sibling-GRPO enables V-STAR to more reliably identify high-commercial-value recommendation candidates, providing strong support for revenue growth in practical deployments.
+
+
+
+
+\subsection{Ablation Study}
+\label{sec:ablation}
+
+We conduct targeted ablation studies to disentangle the contributions of (i) the \emph{decoding strategy} used to construct candidate sets, and (ii) the \emph{training objective} used to optimize the policy.
+
+% \noindent\textbf{Impact of the Decoding Strategy.}
+% \label{sec:ablation_decoding}
+% To isolate the contribution of decoding strategy, we fix the training way and vary \emph{only} the inference-time candidate construction strategy.
+% Specifically, we evaluate the same model of V-STAR on \textit{Industrial} and \textit{Office} using:
+% (i) standard beam search,  (ii) top-$K$ sampling (stochastic decoding with truncation to the top-$K$ tokens at each step), and (iii) our Value-Guided Efficient Decoding (VED).\footnote{All decoders operate under the same hard SID-validity constraint. For a fair comparison, we match the candidate budget by returning the same number of final items.}
+% Table~\ref{tab:ablation_decoding} summarizes the results. Across both data subsets and all metrics, VED consistently yields the strongest performance.
+% Stand beam search concentrates on a small set of high-probability prefixes and may prune low-prior but high-reward branches.
+% Top-$K$ sampling increases diversity but is less reliable in ranking quality, as stochastic exploration is not targeted and often spends budget on low-reward branches.
+% In contrast, VED delivers consistent improvements by reallocating the same budget to a small number of \emph{decisive} prefixes with high value and high uncertainty, thereby mitigating probability-dominated early pruning and improving reachability of valuable long-tail items.
+% Overall, this ablation confirms that value-guided budget allocation is more effective than uniform widening or unguided sampling under the same budget.
+
+\noindent\textbf{Impact of the Decoding Strategy.}\;
+\label{sec:ablation_decoding}
+To isolate decoding effects, we fix the trained way and vary only the inference-time candidate construction method.
+On \textit{Industrial} and \textit{Office}, we compare (i) beam search, (ii) top-K (stochastic sampling from the $K$ highest-probability tokens at each step), and (iii) our VED.\footnote{All methods enforce the same SID-validity constraint and return the same number of final items.}
+Table~\ref{tab:ablation_decoding} shows that VED consistently achieves the best performance across datasets and metrics.
+Beam search is probability-dominated and may prune low-prior yet high-reward branches, while top-$K$ improves diversity but yields less stable ranking due to untargeted exploration.
+In contrast, VED reallocates compute to a small set of decisive prefixes with high value and high uncertainty, mitigating early pruning and improving reachability of valuable long-tail items.
+
+
+
+
+\begin{table}[t]
+\centering
+\small
+\caption{Ablation on decoding strategies.}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Decoding& \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ Strategy 
+& NDCG@10 $\uparrow$ & HR@10 $\uparrow$
+& NDCG@10 $\uparrow$ & HR@10 $\uparrow$ \\
+\midrule
+Beam Search & 0.1194 & 0.1606 & 0.1299  & 0.1684 \\
+Top-K       & 0.1090   & 0.1538  &  0.1226 &  0.1644\\
+Ours        & \textbf{0.1217} & \textbf{0.1641} & \textbf{0.1340}  & \textbf{0.1746}  \\
+\bottomrule
+\end{tabular}
+\vspace{-0.7em}
+\label{tab:ablation_decoding}
+\end{table}
+
+To isolate what drives the gain in VED, we keep the sampling procedure and candidate budget, and vary only the prefix priority score for selecting expansion nodes.
+Table~\ref{tab:ablation_acquisition} compares three rules: value-only ($V_\phi$), entropy-only ($\mathcal{H}_\theta$), and the joint score $G(s)$ (Eq.~\ref{eq:acq}) combining $V_\phi$ and $\mathcal{H}_\theta$.
+Value-only may over-exploit and miss low-prior yet high-reward branches, whereas entropy-only may over-explore high-uncertainty but low-reward regions.
+The joint score is consistently best, indicating that uncertainty mainly serves as an expansion gate: when value is high but confidence is already saturated, further expansion is redundant; uncertainty redirects budget to high-value yet under-resolved prefixes where exploration can still improve reachability.
+
+% % \paragraph{Acquisition rule ablation within VED.}
+% To isolate what drives the gain inside VED, we keep the sampling framework and candidate budget fixed and vary the calculation of prefix priority score used in the prefix tree.
+% Table~\ref{tab:ablation_acquisition} compares four score calculation rules:  {Value-only} ($V_\phi$), {Entropy-only} ($\mathcal{H}_\theta$), and joint score $G(s)$ in Eq.~\ref{eq:acq} that combines both $V_\phi$ and $\mathcal{H}_\theta$).
+% Uniform expansion is consistently worst, confirming that indiscriminate budget allocation wastes expansions on redundant or low-utility prefixes.
+% Value-only is prone to over-exploitation and may miss low-prior yet high-reward branches, while entropy-only can over-explore and allocate budget to high-uncertainty but low-reward regions, degrading ranking quality.
+% Combining both signals achieves the best and most stable performance on both datasets, supporting that effective budget allocation in SID space requires both predicted reward and continuation uncertainty to identify truly decisive branching points.
+
+% \begin{table}[t]
+% \centering
+% \small
+% \caption{Ablation of expand rules in VED.}
+% \setlength{\tabcolsep}{6pt}
+% \begin{tabular}{l cc cc}
+% \toprule
+% Expansion 
+% & \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+% Rule& NDCG@10 $\uparrow$ & HR@10 $\uparrow$
+% & NDCG@10 $\uparrow$ & HR@10 $\uparrow$ \\
+% \midrule
+% % $\log \pi$   &  &  &  &  \\
+% $V_\phi(s)$ & 0.1202 & 0.1627  & 0.1333 & 0.1742  \\
+% $\mathcal{H}_\theta(s)$ & 0.1168 & 0.1594 & 0.1240  & 0.1638   \\
+% $G(s)$ & 0.1217 & 0.1641 & 0.1340  & 0.1746  \\
+% \bottomrule
+% \end{tabular}
+% %\vspace{2pt}
+% \label{tab:ablation_acquisition}
+% \end{table}
+
+
+
+\begin{table}[t]
+\centering
+\small
+\caption{Ablation of expand rules in VED.}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{l cc cc}
+\toprule
+Expansion 
+& \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Rule& NDCG@10 $\uparrow$ & HR@10 $\uparrow$
+& NDCG@10 $\uparrow$ & HR@10 $\uparrow$ \\
+\midrule
+% $\log \pi$   &  &  &  &  \\
+$V_\phi(s)$ & 0.1202 & 0.1627  & 0.1333 & 0.1742  \\
+$\mathcal{H}_\theta(s)$ & 0.1198 & 0.1604 & 0.1259  & 0.1688   \\
+$G(s)$ & \textbf{0.1217} & \textbf{0.1641} & \textbf{0.1340}  & \textbf{0.1746}  \\
+\bottomrule
+\end{tabular}
+%\vspace{2pt}
+\label{tab:ablation_acquisition}
+\end{table}
+%\textbf{Uniform} allocates expansions indiscriminately. \textbf{Value-only} uses $V_\phi$ only. \textbf{Entropy-only} uses $\mathcal{H}_\theta$ only. \textbf{Ours} combines both signals.
+
+
+
+\noindent\textbf{Impact of Sibling-GRPO.}\;
+\label{sec:ablation_sibling_grpo}
+To evaluate the impact of the training objective, we fix VED candidate construction $C(x)$ and compare three RL objectives that differ only in how advantages are normalized on the VED-generated prefix tree: (i) GRPO with global group-based normalization over $C(x)$; (ii) Sibling-GRPO with sibling-relative normalization at shared-prefix branching points; and (iii) GRPO+Sibling-GRPO that jointly optimizes both losses.
+Table~\ref{tab:ablation_sibling_grpo} shows that standard GRPO performs worst, as global normalization is dominated by inter-cluster variance and compresses intra-group advantages.
+Sibling-GRPO improves performance by aligning updates with the prefix-tree topology, focusing gradients on decisive branching nodes.
+Finally, the combined objective achieves the highest NDCG and HR. This suggests that global sequence-level alignment from GRPO and structure-aware, branch-level credit assignment from Sibling-GRPO are mutually reinforcing.
+
+% To evaluate the role of the training objective, we compare three RL variants under the same candidate construction (VED), differing only in how advantages are normalized: (i) \emph{VED + GRPO (Global)}, which applies standard GRPO with global group-based normalization over $\mathcal{C}(x)$; (ii) \emph{VED + GRPO (Local)}, which normalizes advantages within each shared-prefix (sibling) subgroup but still optimizes the standard GRPO objective; and (iii) \emph{VED + Sibling-GRPO}, which performs sibling-relative normalization and aggregates updates at the decisive branching actions. 
+% Across both datasets, global normalization performs worst, as it induces \emph{inter-cluster competition}: when VED produces clustered, prefix-homogeneous candidates, global statistics are dominated by cross-cluster scale and yield one-sided advantages within each cluster, weakening the relative signal for intra-cluster comparisons. Local normalization mitigates this effect by restoring within-cluster positive/negative contrasts, but remains less effective than Sibling-GRPO. By explicitly computing sibling-relative advantages aligned with the shared-prefix structure, Sibling-GRPO yields the most informative gradients, stabilizes optimization on VED-generated candidate groups, and consistently achieves the best NDCG/HR, demonstrating the synergy between value-guided sampling (VED) and structure-aware policy learning.
+% To evaluate the impact of the training objective, we compare three RL objectives under the same candidate construction $C(x)$ by VED, differing only in how learning signals are formed on the VED-generated prefix tree: (i) GRPO, which applies standard GRPO with global group-based advantage normalization over $C(x)$; (ii) Sibling-GRPO, which performs sibling-relative normalization and assigns credit at shared-prefix branching points; and (iii) GRPO + Sibling-GRPO, which optimizes a joint objective of the GRPO and Sibling-GRPO losses.
+% The results in Table~\ref{tab:ablation_sibling_grpo} indicate that standard GRPO yields the lowest performance. This underperformance stems from the fact that global normalization is dominated by inter-cluster variance, which compresses intra-group advantages. 
+% In contrast, Sibling-GRPO aligns the optimization objective with the underlying prefix-tree topology. By utilizing sibling-relative advantages, it concentrates updates on decisive branching nodes, providing the model with more informative gradients and enhanced optimization stability. Finally, the combined objective achieves the highest NDCG and HR. This suggests that global sequence-level alignment from GRPO and structure-aware, branch-level credit assignment from Sibling-GRPO are mutually reinforcing.
+
+% \begin{table}[t]
+% \centering
+% \small
+% \caption{Ablation on training objective.}
+% \setlength{\tabcolsep}{5pt}
+% \begin{tabular}{lcccc}
+% \toprule
+% Training & \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+% Objective
+% & NDCG@10 $\uparrow$ & HR@10 $\uparrow$
+% & NDCG@10 $\uparrow$ & HR@10 $\uparrow$ \\
+% \midrule
+% GRPO         & 0.1189 & 0.1598 & 0.1302 & 0.1712 \\
+% Sibling-GRPO &  0.1204&  0.1640&  0.1335 & 0.1749  \\
+% Joint &0.1217 & 0.1641 & 0.1340  & 0.1746   \\
+% \bottomrule
+% \end{tabular}
+% \vspace{-0.8pt}
+% \label{tab:ablation_sibling_grpo}
+% \end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Ablation on training objective.}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Training & \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Objective
+& NDCG@10 $\uparrow$ & HR@10 $\uparrow$
+& NDCG@10 $\uparrow$ & HR@10 $\uparrow$ \\
+\midrule
+GRPO         & 0.1189 & 0.1598 & 0.1302 & 0.1712 \\
+Sibling-GRPO &  0.1204&  {0.1640}&  0.1335 & \textbf{0.1749}  \\
+Joint &\textbf{0.1217} & \textbf{0.1641} & \textbf{0.1340}  & 0.1746   \\
+\bottomrule
+\end{tabular}
+\vspace{-0.8pt}
+\label{tab:ablation_sibling_grpo}
+\end{table}
+
+% \section{Case Study}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{figure/prob_reward_mismatch7.png}
+    \caption{Spearman Correlation $\rho$ of Probability(P) and Value (V) Signals with Ground-truth Rewards.}
+    \label{fig:qa_prob}
+    % \vspace{-0.4em}
+\end{figure}
+
+
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\linewidth]{figure/scale4.png}
+    \caption{Training time scaling with decoding token budget.}
+    \label{fig:scale}
+    \vspace{-0.2em}
+\end{figure*}
+
+
+
+% 定义一个好看的绿色
+\definecolor{teal}{HTML}{008080}
+
+
+
+
+
+% Case Study 2
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2pt}
+\caption{Case Study of different decoding strategies on \textit{Office Products}. SIDs in \textcolor{red}{red} share prefixes with history items. SIDs in \textcolor{teal}{teal} represent novel explorations. SIDs in \textcolor{green}{green} represent ground truth. VED shows higher candidate diversity and successfully discovers the ground-truth (GT) item in a novel branch (\texttt{<a\_20>}), while baselines remain biased toward historical prefixes.}
+\label{tab:case_study2_concise}
+\begin{tabular}{l p{15.9cm}}
+\toprule
+\textbf{Context} & \textbf{Key Items \& Candidate SIDs (For non-GT candidates, only the first SID are shown for simplicity)} \\
+\midrule
+\textbf{History} &
+Pencil Sharpener (\texttt{<a\_250>}),
+Postcards (\texttt{<a\_225>}),
+Bubble Mailer (\texttt{<a\_118>}),
+Thank-you Stickers (\texttt{<a\_186>}),
+Sharpie Pen (\texttt{<a\_102>}) \\
+\midrule
+\textbf{GT Item} &
+\textbf{ACCUTECK Digital Scale} (\texttt{\textcolor{green}{<a\_20><b\_181><c\_107>}}) \\
+\midrule
+\midrule
+\multirow{2}{*}{\textbf{Beam Search}} &
+Stickers (\texttt{\textcolor{red}{<a\_186>}}),
+Label Tape (\texttt{\textcolor{teal}{<a\_117>}}),
+Sharpie Pen (\texttt{\textcolor{red}{<a\_102>}}),
+Postcards (\texttt{\textcolor{red}{<a\_225>}}),
+Bubble Mailer (\texttt{\textcolor{red}{<a\_118>}}),
+Stickers (\texttt{\textcolor{red}{<a\_186>}}),
+Label Printer (\texttt{\textcolor{teal}{<a\_117>}}),
+Address Labels (\texttt{\textcolor{red}{<a\_186>}}),
+Shipping Labels (\texttt{\textcolor{teal}{<a\_117>}}),
+Label Tape (\texttt{\textcolor{teal}{<a\_117>}}) \\
+& \textit{(High redundancy: 6/10 items are historical prefixes; GT is missed)} \\
+\midrule
+\multirow{2}{*}{\textbf{Top-K}} &
+Sharpie Pen (\texttt{\textcolor{red}{<a\_102>}}),
+Thank-you Labels (\texttt{\textcolor{red}{<a\_186>}}),
+Thank-you Stickers (\texttt{\textcolor{red}{<a\_186>}}),
+Sharpie Marker (\texttt{\textcolor{red}{<a\_102>}}),
+Sharpie Marker (\texttt{\textcolor{red}{<a\_102>}}),
+Foam Board (\texttt{\textcolor{teal}{<a\_242>}}),
+EXPO Markers (\texttt{\textcolor{teal}{<a\_178>}}),
+Bubble Mailer (\texttt{\textcolor{red}{<a\_118>}}),
+Glue Stick (\texttt{\textcolor{teal}{<a\_131>}}),
+File Folders (\texttt{\textcolor{teal}{<a\_204>}}) \\
+& \textit{(Prefix-biased: 6/10 items are historical prefixes; GT is missed)} \\
+\midrule
+\multirow{2}{*}{\textbf{Ours (VED)}} &
+Thank-you Stickers (\texttt{\textcolor{red}{<a\_186>}}),
+Thank-you Labels (\texttt{\textcolor{red}{<a\_186>}}),
+Sharpie Pen (\texttt{\textcolor{red}{<a\_102>}}),
+\textbf{ACCUTECK Digital Scale (GT)} (\texttt{\textcolor{green}{<a\_20><b\_181><c\_107>}}),
+Round Labels (\texttt{\textcolor{red}{<a\_186>}}),
+File Folders (\texttt{\textcolor{teal}{<a\_187>}}),
+Sharpie Marker (\texttt{\textcolor{teal}{<a\_102>}}),
+EXPO Markers (\texttt{\textcolor{teal}{<a\_178>}}),
+Poly Mailers (\texttt{\textcolor{teal}{<a\_118>}}),
+Glue (\texttt{\textcolor{teal}{<a\_242>}}) \\
+& \textit{(Finds GT via novel \texttt{<a\_20>} branch while keeping diverse useful neighbors)} \\
+\bottomrule
+% \vspace{-1em}
+\end{tabular}
+\end{table*}
+
+
+
+
+\subsection{Further Analysis}
+\label{sec:further_analysis}
+
+
+
+% This section provides a deeper diagnosis of the probability--reward mismatch and explains why value guidance and structured optimization improve both candidate discovery and learning stability.
+
+% \paragraph{Probability--reward alignment across SID levels.}
+% \label{sec:prob_reward_levels}
+\noindent\textbf{How well do probability and value align with ground-truth reward across SID levels?} To answer this, we form a candidate pool $\mathcal{C}(x)$ of $64$ SIDs for each query $x$ by temperature sampling from 3 different models: SFT model, RL model trained with beam search+standard GRPO, and our V-STAR model. The temperature is set to 1.5 to cover various probability range. At each level $\ell\in\{1,2,3\}$, we compute Spearman correlation $\rho$ between prefix log-probability $\log\pi_\theta(y_{\leq\ell}\mid x)$ and reward $R(x,y_{\leq\ell})$, where $R(x,y_{\leq\ell})$ is the average reward of candidate in $\mathcal{C}(x)$ that share prefix $y_{\leq\ell}$. For V-STAR, we also compute $\rho$ between value prediction $V_{\phi}(x,y_{\leq\ell})$ and $R(x,y_{\leq\ell})$. We report $\rho$ averaged over queries in Fig.~\ref{fig:qa_prob}. From the figure we can see that: (i) the predicted value $V_{\phi}(x,y_{\leq\ell})$ aligns best with $R(x,y_{\leq\ell})$, (ii) for probability--reward alignment, {V-STAR} $>$ {beam search+GRPO} $>$ {SFT}, indicating that RL improves the probability landscape and V-STAR further enhances such improvement, (iii) the correlation gap is largest at $\ell{=}3$, where semantically similar leaf items reduce discriminability and weaken likelihood--reward correlation, while the value model remains strongly reward-aligned.
+
+% \paragraph{Beam pruning of high-reward candidates.}
+% \label{sec:beam_pruning}
+% \noindent\textbf{Does value guidance reduce beam pruning of high-reward candidates?}
+% Within the temperature-sampled pool $\mathcal{C}(x)$, we define the high-reward set as the top $10\%$ candidates by $R(x,y)$ and report the fraction not covered by beam search (high-reward miss rate), averaged across the $100$ queries.
+% Figure~\ref{fig:pruning} summarizes the results.
+% Beam pruning is severe on \textit{Industrial} for SFT and remains high for the Beam Search baseline, whereas Ours reduces the miss rate below $1\%$.
+% On \textit{Office}, where beam pruning is already small, Ours still yields a consistent reduction.
+% Overall, these results suggest that value-guided sampling recovers high-reward regions that are systematically missed by probability-based beams.
+
+
+
+\begin{table}[t]
+\centering 
+\small
+\caption{Diversity and max reward of candidate sets.}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+\multirow{2}{*}{{Method}}& \multicolumn{2}{c}{Industrial} & \multicolumn{2}{c}{Office} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ &  $\mathrm{Div}(\mathcal{C}) \uparrow$ & MaxReward $\uparrow$
+       &  $\mathrm{Div}(\mathcal{C}) \uparrow$ & MaxReward $\uparrow$ \\
+\midrule
+Beam search & 0.7949 & 0.2303 & 0.8624 & 0.2321 \\
+Top-K       & 0.8089 & 0.2246 & \textbf{0.8856} & 0.2160 \\
+Ours (VED)  & \textbf{0.8167} & \textbf{0.2475} & 0.8852 & \textbf{0.2473}  \\
+\bottomrule
+\end{tabular}
+%\vspace{2pt}
+\label{tab:cand_div_maxreward}
+\end{table}
+\noindent\textbf{Does VED increase candidate-set diversity without sacrificing quality?}
+We measure candidate-set diversity in SID space by calculating the average pairwise dissimilarity in candidate pool $\mathcal{C}(x)$. For two SIDs $v_i$ and $v_j$ (each with $L$ tokens), we define their similarity as the normalized length of the longest common prefix (LCP), i.e., $\mathrm{Sim}_{\mathrm{SID}}(v_i,v_j)=\mathrm{LCP}(v_i,v_j)/L$. 
+Diversity is then computed as the average of $1-\mathrm{Sim}_{\mathrm{SID}}(v_i,v_j)$ over all candidate pairs in $\mathcal{C}(x)$, where a larger value indicates fewer near-duplicate SIDs and broader coverage across SID branches.
+To ensure diversity is not obtained by sacrificing strong candidates, we also report the best-in-set reward $\max_{v\in\mathcal{C}} R(v)$, averaged over test queries. Three decoding strategies are tested: beam search, top-K, and our VED.
+Table~\ref{tab:cand_div_maxreward} reports results with $|\mathcal{C}(x)|=64$. VED yields the highest (or matched-highest) diversity across datasets while consistently improving the best-in-set reward, indicating reduced SID redundancy and better discovery of high-reward candidates without trading off candidate quality. A detailed case study is given in Table~\ref{tab:case_study2_concise}.
+
+% \paragraph{Candidate-set diversity and best-in-set quality.}
+% \label{sec:cand_div}
+% \noindent\textbf{Does our sampling increase candidate-set diversity without sacrificing quality?}
+% Let $\mathcal{C}=\{v_1,\dots,v_K\}$ denote the $K$ decoded candidates for a prompt, where each candidate is represented by a length-$L$ Semantic ID (SID) sequence.
+% We quantify diversity directly in the SID space using the average pairwise SID dissimilarity.
+% For any two candidates $v_i$ and $v_j$, we compute a layer-wise SID similarity $\mathrm{Sim}_{\mathrm{SID}}(v_i,v_j)\in[0,1]$ by comparing their SID tokens across layers (higher means more similar), and define dissimilarity as $1-\mathrm{Sim}_{\mathrm{SID}}(v_i,v_j)$.
+% The diversity score is
+% \begin{equation}
+% \mathrm{Div}(\mathcal{C})
+% =
+% \frac{2}{K(K-1)}
+% \sum_{1\le i<j\le K}
+% \left(1-\mathrm{Sim}_{\mathrm{SID}}(v_i,v_j)\right).
+% \label{eq:cand_div_sid}
+% \end{equation}
+% A larger $\mathrm{Div}(\mathcal{C})$ indicates fewer near-duplicate SIDs and broader coverage of distinct SID branches.
+% To verify that higher diversity is not obtained by discarding strong candidates, we also report the best reward within the candidate set, $\max_{v\in\mathcal{C}}R(v)$, averaged over prompts.
+% Table~\ref{tab:cand_div_maxreward} summarizes the results under a fixed budget of 50 decoded candidates.
+% Ours achieves the highest diversity on \textit{Industrial} and matches the best diversity on \textit{Office}, while consistently improving the best-in-set reward on both datasets.
+% This indicates that our sampling reduces redundancy in the SID space and uncovers higher-reward candidates without trading off candidate quality.
+
+% \paragraph{Scaling with \textit{training-time} decoding compute.}
+% \label{sec:scale_compute}
+
+
+\noindent\textbf{Does VED exhibit more favorable scaling property than beam search under training-time decoding budgets?}
+We compare VED with beam search under matched training-time decoding budgets. Specifically, we scale the decoding token budget by the number of model-evaluated tokens during candidate construction (excluding prompt prefill).
+For $L{=}3$ with beam width $B=16$, the $1\times$ budget is $1{+}2B$, and we proportionally expand it to $2\times$ ($1{+}4B$), $3\times$ ($1{+}6B$), and $4\times$ ($1{+}8B$). Similarly, VED is constrained to the same budgets at each scale.
+Figure~\ref{fig:scale} shows that VED consistently outperforms beam search across budgets and metrics.
+On \textit{Industrial}, VED yields larger gains at low budgets ($1\times\!\rightarrow\!2\times$), whereas widening the beam provides smaller increments, indicating higher compute efficiency from value-guided expansion.
+On \textit{Office}, VED maintains a clear margin at every scale, and $1\times$ VED often matches or exceeds $3\times$--$4\times$ beam search. This suggests that {value-guided expansion is more compute-efficient} than indiscriminately widening the beam.
+Overall, VED converts additional training-time decoding compute into larger improvements than likelihood-driven widening by reducing redundant expansions and prioritizing high-value branches.
+
+% \noindent\textbf{Does VED exhibit more favorable scaling than standard beam search under {training-time} decoding budgets?}
+% As scaling {training-time} compute for candidate construction becomes a practical way to improve RL signal quality, we evaluate the scalability of VED against standard beam search under equivalent computational budgets. We vary the decoding token budget by scaling the number of model-evaluated tokens during candidate construction (excluding prompt prefill). For a 3-level SID ($L{=}3$) with beam size $B$, the $1\times$ budget is $1{+}2B$ tokens, which we proportionally expand to $2\times$ ($1{+}4B$), $3\times$ ($1{+}6B$), and $4\times$ ($1{+}8B$). VED is strictly constrained to these same budgets at each scale to ensure a compute-matched comparison. 
+% The scaling trajectories in Figure~\ref{fig:scale} reveal that VED consistently outperforms standard beam search across all compute scales and metrics. On {Industrial}, VED demonstrates higher {compute efficiency}: it achieves substantial gains at low budgets ($1\times$ to $2\times$) where widening the beam yields smaller incremental improvements, indicating that VED converts additional candidate-construction compute into more reward-informative samples by prioritizing high-value branches. On {Office}, while both methods benefit from increased budget, VED maintains a robust margin at every scale. Notably, VED under a $1\times$ budget often matches or exceeds beam search at $3\times$ or $4\times$, suggesting that {value-guided expansion is more compute-efficient} than indiscriminately widening the beam. Overall, these results confirm that VED establishes a more favorable relationship between {training-time} decoding compute and downstream ranking quality, effectively mitigating the redundancy inherent in likelihood-driven expansion.
+
+
+
+
+
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\linewidth]{figure/pruning2.png}
+%     \caption{High reward pruning analyse}
+%     \label{fig:pruning}
+%     \vspace{-0.8em}
+% \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\vspace{-1em}
+
+% \section{Conclusion}
+\section{Conclusion}
+This paper studies candidate construction for Semantic-ID generative recommendation, where probability-driven decoding (e.g., beam search) tends to over-exploit high-probability sibling branches and provides limited reward contrast for RL. We propose V-STAR, which couples Value-Guided Efficient Decoding (VED) for budgeted candidate construction with Sibling-GRPO for structure-aware policy optimization. VED allocates a fixed decoding budget to a small set of high-potential branching points, improving reachability and candidate diversity without exhaustive tree search. Sibling-GRPO leverages the prefix-tree structure to compute sibling-relative learning signals, stabilizing optimization under prefix coupling. Extensive experiments show that V-STAR consistently improvements over strong generative baselines under strict token budgets, and additional analyses verify better value--reward alignment and more effective use of extra decoding compute.
+
+
+% \section{Acknowledgments}
+
+% Identification of funding sources and other support, and thanks to
+% individuals and groups that assisted in the research and the
+% preparation of the work should be included in an acknowledgment
+% section, which is placed just before the reference section in your
+% document.
+
+% This section has a special environment:
+% \begin{verbatim}
+%   \begin{acks}
+%   ...
+%   \end{acks}
+% \end{verbatim}
+% so that the information contained therein can be more easily collected
+% during the article metadata extraction phase, and to ensure
+% consistency in the spelling of the section heading.
+
+% Authors should not prepare this section as a numbered or unnumbered {\verb|\section|}; please use the ``{\verb|acks|}'' environment.
+
+% \section{Appendices}
+
+% If your work needs an appendix, add it before the
+% ``\verb|\end{document}|'' command at the conclusion of your source
+% document.
+
+% Start the appendix with the ``\verb|appendix|'' command:
+% \begin{verbatim}
+%   \appendix
+% \end{verbatim}
+% and note that in the appendix, sections are lettered, not
+% numbered. This document has two appendices, demonstrating the section
+% and subsection identification method.
+
+
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+\end{document}

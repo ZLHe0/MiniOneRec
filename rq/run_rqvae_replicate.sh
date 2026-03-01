@@ -3,6 +3,7 @@ set -e
 
 export WANDB_MODE=offline
 export CUDA_HOME=/work/envs/MiniOneRec
+PYTHON=/work/envs/MiniOneRec/bin/python
 
 cd "$(dirname "$0")"
 
@@ -10,7 +11,7 @@ echo "============================================="
 echo "  RQVAE Replication - Industrial_and_Scientific"
 echo "============================================="
 
-python rqvae_wandb.py \
+$PYTHON rqvae_wandb.py \
     --data_path ../data/Amazon/index/Industrial_and_Scientific.emb-qwen-td.npy \
     --ckpt_dir ./output_replication/Industrial_and_Scientific \
     --wandb_project rqvae-replication \
@@ -24,7 +25,7 @@ echo "============================================="
 echo "  RQVAE Replication - Office_Products"
 echo "============================================="
 
-python rqvae_wandb.py \
+$PYTHON rqvae_wandb.py \
     --data_path ../data/Amazon/index/Office_Products.emb-qwen-td.npy \
     --ckpt_dir ./output_replication/Office_Products \
     --wandb_project rqvae-replication \

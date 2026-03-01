@@ -67,6 +67,8 @@ def train(
     item_meta_path: str = "",
     dapo: bool = False,
     gspo: bool = False,
+    sibling_grpo: bool = False,
+    sibling_alpha: float = 0.5,
 ):
     torch.backends.cuda.enable_flash_sdp(False)  
     torch.backends.cuda.enable_mem_efficient_sdp(False)
@@ -328,6 +330,8 @@ def train(
         base_model=model_path,
         dapo=dapo,
         gspo=gspo,
+        sibling_grpo=sibling_grpo,
+        sibling_alpha=sibling_alpha,
         add_gt=add_gt,
         dynamic_sampling=dynamic_sampling,
         beam_search=beam_search,
